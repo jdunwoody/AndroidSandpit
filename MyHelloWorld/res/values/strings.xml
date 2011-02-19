@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, MyHelloWorld!</string>
+	<string name="app_name">MyHelloWorld</string>
+	<string name="linear_layout_1_top">This is the top view.</string>
+	<string name="linear_layout_1_middle">This is the middle view. It has more text in it
+		than either the top view or the bottom view.</string>
+	<string name="linear_layout_1_bottom">This is the bottom view.</string>
+	<string name="footer">The is footer text</string>
+
+	<string name="buttons_1_normal">Normal</string>
+	<string name="buttons_1_right">Right</string>
+	<string name="buttons_1_small">Small</string>
+	<string name="buttons_1_small_right">S R</string>
+	<string name="buttons_1_small_left">S L</string>
+	<string name="buttons_1_small_up">S U</string>
+	<string name="buttons_1_small_down">S D</string>
+	<string name="buttons_1_toggle">Toggle</string>
+	<string name="buttons_start_mediaplayer">Start Mediaplayer</string>
+	<string name="buttons_file_explorer">File explorer</string>
+	<string name="file_dialog_text"> File dialogue text</string>
+
+	<string name="normal_pressed">Normal pressed</string>
+	<string name="small_pressed">Small pressed</string>
+	<string name="toggle_pressed">Toggle pressed</string>
+	<string name="planet_prompt">Choose a planet</string>
+	<string-array name="planets">
+		<item>Mercury</item>
+		<item>Venus</item>
+		<item>Earth</item>
+		<item>Mars</item>
+		<item>Jupiter</item>
+		<item>Saturn</item>
+		<item>Uranus</item>
+		<item>Neptune</item>
+	</string-array>
+	<string name="new_game">New Game</string>
+	<string name="quit">Quit</string>
+	<string name="new_game_pressed">New Game pressed</string>
+	<string name="quit_pressed">Quit pressed</string>
+
+	<string name="default_file">...</string>
+</resources>

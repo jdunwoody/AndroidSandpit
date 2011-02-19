@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<ImageView android:layout_width="wrap_content" android:src="@drawable/icon"
+		android:id="@+id/mainImage" android:layout_height="wrap_content"></ImageView>
+
+	<TextView android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/hello" />
+
+	<Button android:layout_width="wrap_content" android:text="Forward"
+		android:layout_height="wrap_content" android:id="@+id/buttonForward"></Button>
+
+	<Button android:layout_width="wrap_content" android:text="Back"
+		android:layout_height="wrap_content" android:id="@+id/buttonBack"></Button>
+
+	<Button android:layout_width="wrap_content" android:text="Left"
+		android:layout_height="wrap_content" android:id="@+id/buttonLeft"></Button>
+
+	<Button android:layout_width="wrap_content" android:text="Right"
+		android:layout_height="wrap_content" android:id="@+id/buttonRight"></Button>
+</LinearLayout>

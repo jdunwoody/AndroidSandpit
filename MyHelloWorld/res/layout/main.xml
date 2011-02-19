@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent">
+
+	<TextView android:id="@+id/text_header" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/hello" />
+
+	<!-- Regular sized buttons -->
+	<Button android:id="@+id/button_normal" android:text="@string/buttons_1_normal"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+
+	<!-- Small buttons -->
+	<Button android:id="@+id/button_small" style="?android:attr/buttonStyleSmall"
+		android:text="@string/buttons_1_small" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+	<ToggleButton android:id="@+id/button_toggle"
+		android:text="@string/buttons_1_toggle" android:layout_width="wrap_content"
+		android:layout_height="wrap_content" />
+
+	<TextView android:id="@+id/text_footer" android:layout_width="fill_parent"
+		android:layout_height="wrap_content" android:text="@string/footer" />
+
+	<Spinner android:id="@+id/spinner" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:drawSelectorOnTop="true"
+	android:prompt="@string/planet_prompt" />
+
+<!--	<Button android:id="@+id/button_start_mediaplayer" android:text="@string/buttons_start_mediaplayer"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+-->
+
+	<Button android:id="@+id/button_file_explorer" android:text="@string/buttons_file_explorer"
+		android:layout_width="wrap_content" android:layout_height="wrap_content" />
+</LinearLayout>
