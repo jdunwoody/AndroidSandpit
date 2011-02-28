@@ -7,7 +7,7 @@
 		android:id="@+id/mainImage" android:layout_height="wrap_content"></ImageView>
 
 	<TextView android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:text="@string/hello" />
+		android:layout_height="wrap_content" android:text="@string/hello" android:id="@+id/messageView"/>
 
 	<Button android:layout_width="wrap_content" android:text="Forward"
 		android:layout_height="wrap_content" android:id="@+id/buttonForward"></Button>
