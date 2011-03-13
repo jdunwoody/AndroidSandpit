@@ -2,4 +2,5 @@
 <resources>
 	<string name="app_name">Flock</string>
 	<string name="flock_name">Flock</string>
+    <string name="gl_name">GlFlockk</string>
 </resources>

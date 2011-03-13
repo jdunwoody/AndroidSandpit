@@ -10,12 +10,12 @@ import android.graphics.drawable.shapes.Shape;
 import android.util.Log;
 import android.view.View;
 
-public class CustomDrawableView extends View {
+public class SkyView extends View {
     private ShapeDrawable drawable;
     private int           x = 0;
     private int           y = 0;
 
-    public CustomDrawableView(Context context) {
+    public SkyView(Context context) {
         super(context);
 
         drawable = new ShapeDrawable(createBirdShape());

@@ -7,15 +7,15 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnTouchListener;
 
-import com.james.view.CustomDrawableView;
+import com.james.view.SkyView;
 
 public class FlockPageActivity extends Activity implements OnTouchListener {
-    private CustomDrawableView view;
+    private SkyView view;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        view = new CustomDrawableView(this);
+        view = new SkyView(this);
         setContentView(view);
 
         Log.i(FlockPageActivity.class.getName(), "info creating activity");
@@ -27,7 +27,7 @@ public class FlockPageActivity extends Activity implements OnTouchListener {
 
     public boolean onTouch(View baseView, MotionEvent event) {
         if (MotionEvent.ACTION_DOWN == event.getAction()) {
-            CustomDrawableView view = (CustomDrawableView) baseView;
+            SkyView view = (SkyView) baseView;
             view.touched(event.getX(), event.getY());
             return true;
         }
