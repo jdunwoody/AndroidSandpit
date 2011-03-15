@@ -14,7 +14,7 @@ public class GLSurfaceViewActivity extends Activity {
         // Create our Preview view and set it as the content of our
         // Activity
         mGLSurfaceView = new GLSurfaceView(this);
-        mGLSurfaceView.setRenderer(new CubeRenderer(false));
+        mGLSurfaceView.setRenderer(new CubeRenderer(true));
         setContentView(mGLSurfaceView);
     }
 

@@ -21,26 +21,18 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.opengl.GLSurfaceView;
 
-/**
- * Render a pair of tumbling cubes.
- */
-
 public class CubeRenderer implements GLSurfaceView.Renderer {
+    private boolean mTranslucentBackground;
+    private Cube    mCube;
+    private float   mAngle;
+
     public CubeRenderer(boolean useTranslucentBackground) {
         mTranslucentBackground = useTranslucentBackground;
         mCube = new Cube();
     }
 
     public void onDrawFrame(GL10 gl) {
-        /*
-         * Usually, the first thing one might want to do is to clear the screen. The most efficient way of doing this is to use glClear().
-         */
-
-        gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
-
-        /*
-         * Now we're ready to draw some 3D objects
-         */
+        clearScreen(gl);
 
         gl.glMatrixMode(GL10.GL_MODELVIEW);
         gl.glLoadIdentity();
@@ -97,7 +89,10 @@ public class CubeRenderer implements GLSurfaceView.Renderer {
         gl.glEnable(GL10.GL_DEPTH_TEST);
     }
 
-    private boolean mTranslucentBackground;
-    private Cube    mCube;
-    private float   mAngle;
+    private void clearScreen(GL10 gl) {
+        /*
+         * Usually, the first thing one might want to do is to clear the screen. The most efficient way of doing this is to use glClear().
+         */
+        gl.glClear(GL10.GL_COLOR_BUFFER_BIT | GL10.GL_DEPTH_BUFFER_BIT);
+    }
 }
