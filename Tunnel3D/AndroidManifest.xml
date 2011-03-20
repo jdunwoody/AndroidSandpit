@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.google.android.tunnel3d">
+    <application android:icon="@drawable/icon">
+        <activity android:label="@string/app_name" class=".AMain" android:name="AMain">
+            <intent-filter>
+                <action android:value="android.intent.action.MAIN" android:name="android.intent.action.MAIN"/>
+                <category android:value="android.intent.category.LAUNCHER" android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+</manifest> 
