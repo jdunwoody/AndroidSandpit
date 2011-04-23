@@ -1,4 +1,4 @@
-package com.james;
+package com.james.render;
 
 import java.nio.FloatBuffer;
 import java.nio.ShortBuffer;
@@ -7,6 +7,8 @@ import javax.microedition.khronos.opengles.GL10;
 
 import android.content.Context;
 import android.os.SystemClock;
+
+import com.james.shape.RegularPolygon;
 
 //filename: SimpleTriangleRenderer.java
 public class PolygonRenderer extends AbstractRenderer {

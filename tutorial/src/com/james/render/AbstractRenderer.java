@@ -1,4 +1,4 @@
-package com.james;
+package com.james.render;
 
 import javax.microedition.khronos.egl.EGL10;
 import javax.microedition.khronos.egl.EGLConfig;
@@ -7,7 +7,6 @@ import javax.microedition.khronos.opengles.GL10;
 import android.opengl.GLSurfaceView.Renderer;
 import android.opengl.GLU;
 
-//filename: AbstractRenderer.java
 public abstract class AbstractRenderer implements Renderer {
     public int[] getConfigSpec() {
         int[] configSpec = { EGL10.EGL_DEPTH_SIZE, 0, EGL10.EGL_NONE };

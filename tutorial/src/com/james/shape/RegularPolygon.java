@@ -1,4 +1,4 @@
-package com.james;
+package com.james.shape;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;

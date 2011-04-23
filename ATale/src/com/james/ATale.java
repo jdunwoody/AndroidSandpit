@@ -5,63 +5,91 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup.LayoutParams;
-import android.widget.Button;
 import android.widget.Gallery;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 public class ATale extends Activity {
-	private LinearLayout linearLayout;
-	private boolean imageA = true;
+    private LinearLayout linearLayout;
+    private boolean      imageA = true;
+    private Controller   controller;
+    private GameState    gameState;
 
-	@Override
-	public void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-		setContentView(R.layout.main);
+        setContentView(R.layout.main);
+        try {
+            this.gameState = new GameState("map.data");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		setupButtonListener();
-		// setupMainImage();
-	}
+        this.controller = new Controller(this, gameState);
+        setupButtonListeners();
+    }
 
-	private OnClickListener buttonClickListener = new OnClickListener() {
-		public void onClick(View v) {
-			TextView textView = (TextView) findViewById(R.id.messageView);
-			textView.setText("excellent");
-		}
-	};
+    private void setupButtonListeners() {
+        ImageButton forward = (ImageButton) findViewById(R.id.forward);
+        ImageButton back = (ImageButton) findViewById(R.id.back);
+        ImageButton left = (ImageButton) findViewById(R.id.left);
+        ImageButton right = (ImageButton) findViewById(R.id.right);
 
-	// private View changeImage() {
-	// ImageView mainImage = (ImageView) findViewById(R.id.mainImage);
-	//
-	// mainImage.setImageResource(currentImage());
-	//
-	// return mainImage;
-	// }
-	//
-	// private int currentImage() {
-	// if (imageA != imageA) {
-	// return R.drawable.icon;
-	// } else {
-	// return R.drawable.imageb;
-	// }
-	// }
+        forward.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.forward();
+            }
+        });
 
-	private void setupButtonListener() {
-		Button button = (Button) findViewById(R.id.buttonForward);
-		button.setOnClickListener(buttonClickListener);
-	}
+        back.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.back();
+            }
 
-	private void setupMainImage() {
-		linearLayout = new LinearLayout(this);
+        });
+        left.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.left();
+            }
+        });
+        right.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                controller.right();
+            }
+        });
+    }
 
-		ImageView mainImage = (ImageView) findViewById(R.id.mainImage);
+    private void setupMainImage() {
+        linearLayout = new LinearLayout(this);
 
-		mainImage.setImageResource(R.drawable.icon);
-		mainImage.setAdjustViewBounds(true);
-		mainImage.setLayoutParams(new Gallery.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+        ImageView mainImage = (ImageView) findViewById(R.id.mainImage);
 
-		// linearLayout.addView(mainImage);
-	}
+        mainImage.setImageResource(R.drawable.icon);
+        mainImage.setAdjustViewBounds(true);
+        mainImage.setLayoutParams(new Gallery.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
+
+        // linearLayout.addView(mainImage);
+    }
+
+    // private View changeImage() {
+    // ImageView mainImage = (ImageView) findViewById(R.id.mainImage);
+    //
+    // mainImage.setImageResource(currentImage());
+    //
+    // return mainImage;
+    // }
+    //
+    // private int currentImage() {
+    // if (imageA != imageA) {
+    // return R.drawable.icon;
+    // } else {
+    // return R.drawable.imageb;
+    // }
+    // }
 }

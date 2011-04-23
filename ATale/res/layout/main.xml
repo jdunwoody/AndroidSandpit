@@ -3,21 +3,39 @@
 	android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent">
 
-	<ImageView android:layout_width="wrap_content" android:src="@drawable/icon"
-		android:id="@+id/mainImage" android:layout_height="wrap_content"></ImageView>
+	<TableLayout android:layout_width="match_parent"
+		android:id="@+id/tableLayout1" android:layout_height="wrap_content">
 
-	<TextView android:layout_width="fill_parent"
-		android:layout_height="wrap_content" android:text="@string/hello" android:id="@+id/messageView"/>
+		<TableRow android:id="@+id/tableRow1" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
+			<ImageView android:layout_width="wrap_content" android:src="@drawable/icon"
+				android:id="@+id/mainImage" android:layout_height="wrap_content"></ImageView>
 
-	<Button android:layout_width="wrap_content" android:text="Forward"
-		android:layout_height="wrap_content" android:id="@+id/buttonForward"></Button>
+			<TextView android:layout_width="fill_parent"
+				android:layout_height="wrap_content" android:text="@string/hello"
+				android:id="@+id/messageView" />
 
-	<Button android:layout_width="wrap_content" android:text="Back"
-		android:layout_height="wrap_content" android:id="@+id/buttonBack"></Button>
+		</TableRow>
 
-	<Button android:layout_width="wrap_content" android:text="Left"
-		android:layout_height="wrap_content" android:id="@+id/buttonLeft"></Button>
+		<TableRow android:id="@+id/tableRow2" android:layout_width="wrap_content"
+			android:layout_height="wrap_content">
 
-	<Button android:layout_width="wrap_content" android:text="Right"
-		android:layout_height="wrap_content" android:id="@+id/buttonRight"></Button>
+			<ImageButton android:layout_height="wrap_content"
+				android:id="@+id/left" android:layout_width="wrap_content"
+				android:src="@drawable/left"></ImageButton>
+
+			<ImageButton android:layout_height="wrap_content"
+				android:id="@+id/forward" android:layout_width="wrap_content"
+				android:src="@drawable/forward"></ImageButton>
+
+			<ImageButton android:layout_height="wrap_content"
+				android:id="@+id/back" android:layout_width="wrap_content"
+				android:src="@drawable/back"></ImageButton>
+
+			<ImageButton android:layout_height="wrap_content"
+				android:id="@+id/right" android:layout_width="wrap_content"
+				android:src="@drawable/right"></ImageButton>
+		</TableRow>
+
+	</TableLayout>
 </LinearLayout>
