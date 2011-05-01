@@ -13,6 +13,18 @@ public class Controller {
         this.state = state;
     }
 
+    public void back() {
+        state.moveSouth();
+    }
+
+    public void forward() {
+        state.moveNorth();
+    }
+
+    public void left() {
+        state.moveWest();
+    }
+
     public void pressed(View view) {
         ImageButton button = (ImageButton) view;
 
@@ -20,19 +32,7 @@ public class Controller {
         status.setText("excellent " + button.getId());
     }
 
-    public void forward() {
-        state.moveForward();
-    }
-
-    public void back() {
-        state.moveBack();
-    }
-
-    public void left() {
-        state.moveLeft();
-    }
-
     public void right() {
-        state.moveRight();
+        state.moveEast();
     }
 }

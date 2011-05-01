@@ -11,10 +11,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 public class ATale extends Activity {
-    private LinearLayout linearLayout;
-    private boolean      imageA = true;
     private Controller   controller;
     private GameState    gameState;
+    private boolean      imageA = true;
+    private LinearLayout linearLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
