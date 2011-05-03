@@ -2,7 +2,7 @@ package com.james.thing;
 
 public class Wall implements Thing {
     @Override
-    public String toString() {
+    public String display() {
         return "+";
     }
 }

@@ -36,7 +36,12 @@ public class Avatar implements Thing {
     }
 
     @Override
-    public String toString() {
+    public String display() {
         return "*";
+    }
+
+    @Override
+    public String toString() {
+        return "Avatar";
     }
 }

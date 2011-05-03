@@ -1,6 +1,7 @@
 package com.james;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 
 import com.james.thing.Avatar;
@@ -8,47 +9,31 @@ import com.james.thing.Empty;
 import com.james.thing.Thing;
 import com.james.thing.Wall;
 
-public class GameState {
+public class GameState implements Displayable {
     public static final Thing EMPTY_THING = new Empty();
-    private static final int  HEIGHT      = 10;
+    static final int          HEIGHT      = 10;
     public static final Thing WALL_THING  = new Wall();
-    private static final int  WIDTH       = 10;
+    static final int          WIDTH       = 10;
     Avatar                    avatar      = new Avatar(0, 0);
-    private Thing             map[][];
+    private GameMap           map;
+    private GameMapBuilder    mapBuilder  = new GameMapBuilder();
 
-    public GameState(String mapFilename) throws Exception {
-        BufferedReader reader = new BufferedReader(new FileReader(mapFilename));
+    public GameState(File file) throws Exception {
+        char[] buffer = new char[1024];
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        int size = reader.read(buffer);
 
-        char row[] = new char[WIDTH + 1];
-
-        map = new Thing[HEIGHT][];
-        for (int y = 0; y < HEIGHT; y++) {
-            reader.read(row);
-            map[y] = new Thing[WIDTH];
-            for (int x = 0; x < WIDTH; x++) {
-                map[y][x] = build(row[x], x, y);
-            }
-        }
+        map = mapBuilder.build(avatar, new String(buffer, 0, size));
 
         reader.close();
     }
 
-    private Thing build(char val, int x, int y) {
-        switch (val) {
-            case '0':
-                return EMPTY_THING;
-            case '+':
-                return WALL_THING;
-            case '*':
-                avatar.set(x, y);
-                return avatar;
-            default:
-                throw new RuntimeException("Unknown data value: " + val);
-        }
+    public GameState(String buffer) {
+        map = mapBuilder.build(avatar, new String(buffer));
     }
 
     public Thing get(int x, int y) {
-        return map[y][x];
+        return map.at(x, y);
     }
 
     public void moveSouth() {
@@ -112,22 +97,12 @@ public class GameState {
     }
 
     private void moveAvatar(int oldX, int newX, int oldY, int newY) {
-        map[oldY][oldX] = EMPTY_THING;
-        map[newY][newX] = avatar;
+        map.set(oldX, oldY, EMPTY_THING);
+        map.set(newX, newY, avatar);
     }
 
     @Override
-    public String toString() {
-        StringBuffer sb = new StringBuffer();
-
-        for (int y = 0; y < HEIGHT; y++) {
-            for (int x = 0; x < WIDTH; x++) {
-                sb.append(map[y][x]);
-            }
-            sb.append("\n");
-        }
-
-        return sb.toString();
+    public String display() {
+        return map.display();
     }
-
 }

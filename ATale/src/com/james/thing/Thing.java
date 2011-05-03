@@ -1,4 +1,7 @@
 package com.james.thing;
 
-public interface Thing {
+import com.james.Displayable;
+
+public interface Thing extends Displayable {
+
 }
