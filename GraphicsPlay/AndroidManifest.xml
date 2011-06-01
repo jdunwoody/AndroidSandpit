@@ -9,10 +9,27 @@
         <activity android:name="AndroidGraphics"
                   android:label="@string/app_name">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:launchMode="standard" android:name=".graphics.imageview.ViewFromResourceActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.MAIN"></action>
+            </intent-filter>
+        </activity>
+        <activity android:name=".graphics.imageview.CustomDrawableActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.RUN"></action>
+            </intent-filter>
+        </activity>
+        <activity android:name=".graphics.imageview.DrawableOverBackgroundActivity">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.settings.PRIVACY_SETTINGS"></action>
             </intent-filter>
         </activity>
 
     </application>
-</manifest>
+</manifest> 
