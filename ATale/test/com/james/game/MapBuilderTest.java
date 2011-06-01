@@ -1,9 +1,10 @@
-package com.james;
+package com.james.game;
 
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
+import com.james.game.GameMapBuilder;
 import com.james.thing.Avatar;
 
 public class MapBuilderTest {

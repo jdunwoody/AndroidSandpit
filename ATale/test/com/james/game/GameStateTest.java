@@ -1,6 +1,6 @@
-package com.james;
+package com.james.game;
 
-import static com.james.GameState.EMPTY_THING;
+import static com.james.game.GameState.EMPTY_THING;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -8,6 +8,7 @@ import java.io.File;
 
 import org.junit.Test;
 
+import com.james.game.GameState;
 import com.james.thing.Avatar;
 
 public class GameStateTest {

@@ -1,8 +1,8 @@
-package com.james.thing;
+package com.james.game;
 
 import android.graphics.Canvas;
 import android.graphics.Paint;
 
-public interface Thing {
+public interface Renderable {
     void render(Canvas canvas, Paint paint);
 }

@@ -1,4 +1,4 @@
-package com.james;
+package com.james.game;
 
 import com.james.thing.Monster;
 

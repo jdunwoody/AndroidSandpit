@@ -1,8 +1,13 @@
 package com.james.thing;
 
-public class Empty implements Thing {
+public class Empty extends AbstractThing {
+    public Empty(ThingRenderer renderer) {
+        super(renderer);
+    }
+
     @Override
-    public String display() {
-        return " ";
+    public void display() {
+        getRenderer().display();
+        // return " ";
     }
 }

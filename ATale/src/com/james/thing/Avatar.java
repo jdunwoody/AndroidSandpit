@@ -1,25 +1,23 @@
 package com.james.thing;
 
-public class Avatar implements Thing {
-    public static final int NORTH     = 0;
+public class Avatar extends AbstractThing {
     public static final int EAST      = 1;
+    public static final int NORTH     = 0;
     public static final int SOUTH     = 2;
     public static final int WEST      = 3;
+    public int              direction = 0;
     public int              x;
     public int              y;
-    public int              direction = 0;
 
-    public Avatar(int x, int y) {
+    public Avatar(ThingRenderer renderer, int x, int y) {
+        super(renderer);
         this.x = x;
         this.y = y;
     }
 
-    public void turnRight() {
-        direction = (direction + 1) % 4;
-    }
-
-    public void turnLeft() {
-        direction = (direction + 3) % 4;
+    @Override
+    public void display() {
+        getRenderer().display();
     }
 
     public int getX() {
@@ -36,12 +34,15 @@ public class Avatar implements Thing {
     }
 
     @Override
-    public String display() {
-        return "*";
-    }
-
-    @Override
     public String toString() {
         return "Avatar";
+    }
+
+    public void turnLeft() {
+        direction = (direction + 3) % 4;
+    }
+
+    public void turnRight() {
+        direction = (direction + 1) % 4;
     }
 }

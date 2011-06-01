@@ -1,8 +1,10 @@
-package com.james;
+package commandline;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+
+import com.james.game.GameState;
 
 public class SimpleGame {
     public static void main(String args[]) throws Exception {

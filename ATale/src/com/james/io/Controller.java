@@ -1,8 +1,10 @@
-package com.james;
+package com.james.io;
+
+import com.james.activity.ATale;
+import com.james.game.GameState;
 
 import android.view.View;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
 public class Controller {
     private final ATale     aTale;
@@ -28,8 +30,8 @@ public class Controller {
     public void pressed(View view) {
         ImageButton button = (ImageButton) view;
 
-        TextView status = (TextView) aTale.findViewById(R.id.messageView);
-        status.setText("excellent " + button.getId());
+        // TextView status = (TextView) aTale.findViewById(R.id.messageView);
+        // status.setText("excellent " + button.getId());
     }
 
     public void right() {

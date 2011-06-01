@@ -1,4 +1,4 @@
-package com.james;
+package com.james.game;
 
 import static org.junit.Assert.assertEquals;
 
