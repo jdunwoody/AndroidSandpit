@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<string name="hello">Hello World, Android3dGraphics!</string>
+	<string name="app_name">Android3dGraphics</string>
+	<string name="lunar_layout_text_text"></string>
+</resources>
