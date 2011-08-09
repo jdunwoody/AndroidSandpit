@@ -16,24 +16,24 @@ public class DragMeActivity extends Activity implements OnTouchListener {
     private final static int STOP_DRAGGING  = 1;
 
     private Button           btn;
-    private FrameLayout      layout;
-    private int              status;
-    private LayoutParams     params;
     private ImageView        image;
+    private FrameLayout      layout;
+    private LayoutParams     params;
+    private int              status;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        layout = (FrameLayout) findViewById(R.id.frameLayout);
+        // layout = (FrameLayout) findViewById(R.id.frameLayout);
         // layout.setOnTouchListener(this);
 
-        btn = (Button) findViewById(R.id.btn);
-        btn.setDrawingCacheEnabled(true);
-        btn.setOnTouchListener(this);
-
-        params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        // btn = (Button) findViewById(R.id.btn);
+        // btn.setDrawingCacheEnabled(true);
+        // btn.setOnTouchListener(this);
+        //
+        // params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
 
     }
 

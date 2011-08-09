@@ -4,3 +4,4 @@ Android_reference/
 .DS_Store
 *.log
 unused/
+.classpath
