@@ -1,4 +1,4 @@
-package com.james;
+package com.james.view;
 
 import static com.james.logging.Logging.log;
 
@@ -9,11 +9,17 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
+import android.view.MotionEvent;
 import android.view.View;
 
-public class AnimatedSmallCardsView extends View {
+import com.james.DragAdapter;
+import com.james.DragNotifiable;
+import com.james.R;
+
+public class AnimatedSmallCardsView extends View implements DragNotifiable {
     private final List<Drawable> cards;
     private final Context        context;
+    private final DragAdapter    dragAdaper = new DragAdapter(this);
     private final int            screenHeight;
     private final int            screenWidth;
 
@@ -33,11 +39,25 @@ public class AnimatedSmallCardsView extends View {
     }
 
     @Override
+    public void dragLeft() {
+        log("drag left");
+    }
+
+    @Override
+    public void dragRight() {
+        log("drag right");
+    }
+
+    @Override
     public void onDraw(Canvas canvas) {
-        log("AnimatedSmallCardsView draw");
         for (Drawable card : cards) {
             card.draw(canvas);
         }
+    }
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return dragAdaper.onTouchEvent(event);
     }
 
     private Drawable loadImage(Resources res, int resource, int offset) {
@@ -46,8 +66,8 @@ public class AnimatedSmallCardsView extends View {
         float imageRatio = (float) image.getIntrinsicWidth() / image.getIntrinsicHeight();
         int imageWidth = (int) (240 * imageRatio);
         int imageHeight = (int) (400 * imageRatio);
-        log("" + screenWidth + "-" + imageWidth + "(" + (screenWidth - imageWidth) + ") , " + screenHeight + "-" + imageHeight + "," + imageWidth
-                + "," + imageHeight);
+        // log("" + screenWidth + "-" + imageWidth + "(" + (screenWidth - imageWidth) + ") , " + screenHeight + "-" + imageHeight + "," + imageWidth +
+        // "," + imageHeight);
         int left = screenWidth - imageWidth - offset;
         int top = screenHeight - imageHeight;
         int right = screenWidth - offset;
@@ -56,4 +76,5 @@ public class AnimatedSmallCardsView extends View {
         image.setBounds(left, top, right, bottom);
         return image;
     }
+
 }

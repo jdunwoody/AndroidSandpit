@@ -2,10 +2,11 @@ package com.james;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Display;
 import android.view.View;
 import android.widget.LinearLayout;
+
+import com.james.view.AnimatedSmallCardsView;
 
 public class BridgeTableActivity extends Activity {
     @Override
@@ -13,7 +14,6 @@ public class BridgeTableActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
-        Log.i("Bridge", "onCreate Activity");
         LinearLayout mainLayout = (LinearLayout) findViewById(R.id.mainLayout);
         // MainView mainView = new MainView(this);
         // mainLayout.addView(mainView);

@@ -1,4 +1,4 @@
-package com.james;
+package com.james.view;
 
 import android.content.Context;
 import android.graphics.Bitmap;
