@@ -9,18 +9,19 @@ import android.content.Context;
 import android.view.MotionEvent;
 import android.widget.ImageView;
 
+import com.james.Direction;
 import com.james.DragAdapter;
 import com.james.DragNotifiable;
 import com.james.R;
 
-public class MainView extends ImageView implements DragNotifiable {
+public class FullScreenCardView extends ImageView implements DragNotifiable {
 
     private final List<Integer> cards;
     private final Context       context;
     private int                 currentCardIndex;
     private final DragAdapter   dragAdapter = new DragAdapter(this);
 
-    public MainView(Context context) {
+    public FullScreenCardView(Context context) {
         super(context);
         this.context = context;
         cards = loadCards();
@@ -29,20 +30,20 @@ public class MainView extends ImageView implements DragNotifiable {
     }
 
     @Override
-    public void dragLeft() {
-        log("dragLeft");
-        if (currentCardIndex > 0) {
-            currentCardIndex--;
-            drawCard();
-        }
-    }
-
-    @Override
-    public void dragRight() {
-        log("dragRight");
-        if (currentCardIndex < cards.size() - 1) {
-            currentCardIndex++;
-            drawCard();
+    public void drag(Direction direction) {
+        switch (direction) {
+            case DRAG_LEFT:
+                log("dragLeft");
+                if (currentCardIndex > 0) {
+                    currentCardIndex--;
+                    drawCard();
+                }
+            case DRAG_RIGHT:
+                log("dragRight");
+                if (currentCardIndex < cards.size() - 1) {
+                    currentCardIndex++;
+                    drawCard();
+                }
         }
     }
 

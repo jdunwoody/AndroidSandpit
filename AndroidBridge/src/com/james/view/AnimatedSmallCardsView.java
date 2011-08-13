@@ -8,49 +8,77 @@ import java.util.List;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
-import android.graphics.drawable.Drawable;
 import android.view.MotionEvent;
 import android.view.View;
 
+import com.james.Direction;
 import com.james.DragAdapter;
 import com.james.DragNotifiable;
 import com.james.R;
 
 public class AnimatedSmallCardsView extends View implements DragNotifiable {
-    private final List<Drawable> cards;
-    private final Context        context;
-    private final DragAdapter    dragAdaper = new DragAdapter(this);
-    private final int            screenHeight;
-    private final int            screenWidth;
+    private final CardFactory cardFactory;
+    private final List<Card>  cards;
+    private final Context     context;
+    private final DragAdapter dragAdaper;
+    private final int         screenHeight;
+    private final int         screenWidth;
 
     public AnimatedSmallCardsView(Context context, int width, int height) {
         super(context);
         this.context = context;
         screenWidth = width;
         screenHeight = height;
+        dragAdaper = new DragAdapter(this);
 
         Resources res = context.getResources();
 
-        cards = new ArrayList<Drawable>();
-        cards.add(loadImage(res, R.drawable.king_hearts, 0));
-        cards.add(loadImage(res, R.drawable.king_spades, 30));
-        cards.add(loadImage(res, R.drawable.king_clubs, 60));
-        cards.add(loadImage(res, R.drawable.king_diamonds, 90));
+        cardFactory = new CardFactory();
+
+        cards = new ArrayList<Card>();
+        cards.add(createCard(res, R.drawable.king_hearts, 0));
+        cards.add(createCard(res, R.drawable.king_spades, 30));
+        cards.add(createCard(res, R.drawable.king_clubs, 60));
+        cards.add(createCard(res, R.drawable.king_diamonds, 90));
     }
 
     @Override
-    public void dragLeft() {
-        log("drag left");
-    }
+    public void drag(Direction direction) {
+        if (direction == Direction.NONE) {
+            return;
+        }
 
-    @Override
-    public void dragRight() {
-        log("drag right");
+        Card card = cards.get(0);
+        int x = card.x;
+        int y = card.y;
+        switch (direction) {
+            case DRAG_LEFT:
+                x = card.x - 10;
+                y = card.y;
+                break;
+            case DRAG_RIGHT:
+                x = card.x + 10;
+                y = card.y;
+                break;
+            case DRAG_UP:
+                x = card.x;
+                y = card.y - 10;
+                break;
+            case DRAG_DOWN:
+                x = card.x;
+                y = card.y + 10;
+                break;
+        }
+
+        card.move(x, y);
+        invalidate();
+
     }
 
     @Override
     public void onDraw(Canvas canvas) {
-        for (Drawable card : cards) {
+        log("drawing");
+        for (Card card : cards) {
             card.draw(canvas);
         }
     }
@@ -60,21 +88,9 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         return dragAdaper.onTouchEvent(event);
     }
 
-    private Drawable loadImage(Resources res, int resource, int offset) {
-        Drawable image = res.getDrawable(resource);
-
-        float imageRatio = (float) image.getIntrinsicWidth() / image.getIntrinsicHeight();
-        int imageWidth = (int) (240 * imageRatio);
-        int imageHeight = (int) (400 * imageRatio);
-        // log("" + screenWidth + "-" + imageWidth + "(" + (screenWidth - imageWidth) + ") , " + screenHeight + "-" + imageHeight + "," + imageWidth +
-        // "," + imageHeight);
-        int left = screenWidth - imageWidth - offset;
-        int top = screenHeight - imageHeight;
-        int right = screenWidth - offset;
-        int bottom = screenHeight;
-
-        image.setBounds(left, top, right, bottom);
-        return image;
+    private Card createCard(Resources res, int resource, int offset) {
+        Card card = cardFactory.newInstance(res, resource);
+        card.move(offset, 0);
+        return card;
     }
-
 }

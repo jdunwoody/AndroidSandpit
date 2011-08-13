@@ -4,9 +4,7 @@ import android.view.MotionEvent;
 
 public interface DragNotifiable {
 
-    void dragLeft();
-
-    void dragRight();
+    void drag(Direction direction);
 
     boolean onTouchEvent(MotionEvent event);
 }
