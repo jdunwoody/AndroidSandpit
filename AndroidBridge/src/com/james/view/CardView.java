@@ -4,14 +4,14 @@ import static com.james.logging.Logging.log;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 
-public class Card {
+public class CardView {
     public int             x;
     private final int      height;
     private final Drawable image;
     private final int      width;
     int                    y;
 
-    public Card(int width, int height, Drawable image) {
+    public CardView(int width, int height, Drawable image) {
         this.width = width;
         this.height = height;
         this.image = image;

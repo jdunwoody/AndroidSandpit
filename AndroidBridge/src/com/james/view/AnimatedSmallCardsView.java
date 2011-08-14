@@ -2,8 +2,8 @@ package com.james.view;
 
 import static com.james.logging.Logging.log;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.EnumSet;
+import java.util.Map;
 
 import android.content.Context;
 import android.content.res.Resources;
@@ -14,13 +14,15 @@ import android.view.View;
 import com.james.Direction;
 import com.james.DragAdapter;
 import com.james.DragNotifiable;
-import com.james.R;
+import com.james.domain.Card;
+import com.james.domain.Hand;
+import com.james.domain.Pack;
 
 public class AnimatedSmallCardsView extends View implements DragNotifiable {
-    private final CardFactory cardFactory;
-    private final List<Card>  cards;
     private final Context     context;
     private final DragAdapter dragAdaper;
+    private final Pack        pack;
+    private final PackFactory packFactory;
     private final int         screenHeight;
     private final int         screenWidth;
 
@@ -32,14 +34,12 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         dragAdaper = new DragAdapter(this);
 
         Resources res = context.getResources();
+        packFactory = new PackFactory();
+        pack = packFactory.newInstance(res);
 
-        cardFactory = new CardFactory();
+        pack.shuffle();
+        Map<Player, Hand> hands = pack.deal();
 
-        cards = new ArrayList<Card>();
-        cards.add(createCard(res, R.drawable.king_hearts, 0));
-        cards.add(createCard(res, R.drawable.king_spades, 30));
-        cards.add(createCard(res, R.drawable.king_clubs, 60));
-        cards.add(createCard(res, R.drawable.king_diamonds, 90));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
             return;
         }
 
-        Card card = cards.get(0);
+        CardView card = pack.getHand(Player.NORTH).getCard(0).getView();
         int x = card.x;
         int y = card.y;
         switch (direction) {
@@ -78,8 +78,11 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
     @Override
     public void onDraw(Canvas canvas) {
         log("drawing");
-        for (Card card : cards) {
-            card.draw(canvas);
+        for (Player player : EnumSet.allOf(Player.class)) {
+            Hand hand = pack.getHand(player);
+            for (Card card : hand.cards()) {
+                card.getView().draw(canvas);
+            }
         }
     }
 
@@ -88,9 +91,4 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         return dragAdaper.onTouchEvent(event);
     }
 
-    private Card createCard(Resources res, int resource, int offset) {
-        Card card = cardFactory.newInstance(res, resource);
-        card.move(offset, 0);
-        return card;
-    }
 }
