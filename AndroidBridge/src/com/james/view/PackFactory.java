@@ -1,5 +1,8 @@
 package com.james.view;
 
+import static com.james.logging.Logging.log;
+
+import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.List;
@@ -33,6 +36,25 @@ public class PackFactory {
     }
 
     private Card addCard(Resources res, Suit suit, Rank rank) {
-        return cardFactory.newInstance(res, R.drawable.king_hearts, rank, suit);
+        String cardResource = rank + "_" + suit;
+        log("CardResourceFile: " + cardResource);
+
+        Field cardResourceField = null;
+        try {
+            cardResourceField = R.drawable.class.getField(cardResource);
+        } catch (SecurityException e) {
+            e.printStackTrace();
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        }
+        Card card = null;
+        try {
+            card = cardFactory.newInstance(res, cardResourceField.getInt(null), rank, suit);
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return card;
     }
 }

@@ -19,8 +19,10 @@ import com.james.domain.Hand;
 import com.james.domain.Pack;
 
 public class AnimatedSmallCardsView extends View implements DragNotifiable {
+    private final static int  DRAG_AMOUNT = 50;
     private final Context     context;
     private final DragAdapter dragAdaper;
+    private Map<Player, Hand> hands;
     private final Pack        pack;
     private final PackFactory packFactory;
     private final int         screenHeight;
@@ -38,8 +40,7 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         pack = packFactory.newInstance(res);
 
         pack.shuffle();
-        Map<Player, Hand> hands = pack.deal();
-
+        pack.deal();
     }
 
     @Override
@@ -53,20 +54,20 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         int y = card.y;
         switch (direction) {
             case DRAG_LEFT:
-                x = card.x - 10;
+                x = card.x - DRAG_AMOUNT;
                 y = card.y;
                 break;
             case DRAG_RIGHT:
-                x = card.x + 10;
+                x = card.x + DRAG_AMOUNT;
                 y = card.y;
                 break;
             case DRAG_UP:
                 x = card.x;
-                y = card.y - 10;
+                y = card.y - DRAG_AMOUNT;
                 break;
             case DRAG_DOWN:
                 x = card.x;
-                y = card.y + 10;
+                y = card.y + DRAG_AMOUNT;
                 break;
         }
 
@@ -81,6 +82,7 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         for (Player player : EnumSet.allOf(Player.class)) {
             Hand hand = pack.getHand(player);
             for (Card card : hand.cards()) {
+                log("Drawing card " + card);
                 card.getView().draw(canvas);
             }
         }
@@ -90,5 +92,4 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
     public boolean onTouchEvent(MotionEvent event) {
         return dragAdaper.onTouchEvent(event);
     }
-
 }

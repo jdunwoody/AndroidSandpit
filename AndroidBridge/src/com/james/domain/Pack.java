@@ -14,7 +14,7 @@ public class Pack {
         this.cards = cards;
     }
 
-    public Map<Player, Hand> deal() {
+    public void deal() {
         Hand north = new Hand();
         Hand south = new Hand();
         Hand west = new Hand();
@@ -31,8 +31,6 @@ public class Pack {
         hands.put(Player.SOUTH, south);
         hands.put(Player.WEST, west);
         hands.put(Player.EAST, east);
-
-        return hands;
     }
 
     public Hand getHand(Player player) {
