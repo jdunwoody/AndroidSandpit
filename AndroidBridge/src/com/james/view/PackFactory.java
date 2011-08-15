@@ -26,35 +26,27 @@ public class PackFactory {
     public Pack newInstance(Resources res) {
         List<Card> cards = new ArrayList<Card>();
 
-        for (Suit suit : EnumSet.allOf(Suit.class)) {
-            for (Rank rank : EnumSet.allOf(Rank.class)) {
-                cards.add(addCard(res, suit, rank));
+        try {
+            for (Suit suit : EnumSet.allOf(Suit.class)) {
+                for (Rank rank : EnumSet.allOf(Rank.class)) {
+                    cards.add(addCard(res, suit, rank));
+                }
             }
+        } catch (Exception e) {
+            log(e.getMessage());
+            throw new RuntimeException(e);
         }
 
         return new Pack(cards);
     }
 
-    private Card addCard(Resources res, Suit suit, Rank rank) {
-        String cardResource = rank + "_" + suit;
+    private Card addCard(Resources res, Suit suit, Rank rank) throws SecurityException, NoSuchFieldException, IllegalArgumentException,
+            IllegalAccessException {
+        String cardResource = (rank + "_" + suit).toLowerCase();
         log("CardResourceFile: " + cardResource);
 
-        Field cardResourceField = null;
-        try {
-            cardResourceField = R.drawable.class.getField(cardResource);
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        } catch (NoSuchFieldException e) {
-            e.printStackTrace();
-        }
-        Card card = null;
-        try {
-            card = cardFactory.newInstance(res, cardResourceField.getInt(null), rank, suit);
-        } catch (IllegalArgumentException e) {
-            e.printStackTrace();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        }
-        return card;
+        Field cardResourceField = R.drawable.class.getField(cardResource);
+
+        return cardFactory.newInstance(res, cardResourceField.getInt(null), rank, suit);
     }
 }
