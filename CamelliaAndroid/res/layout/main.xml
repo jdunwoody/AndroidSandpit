@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/purple_gradient">
+
+
+	<RelativeLayout android:layout_width="match_parent" android:id="@+id/relativeLayout1" android:layout_height="50dp" android:background="@drawable/purple_gradient">
+		<ImageView android:src="@drawable/hi" android:id="@+id/imageView1" android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentLeft="true"></ImageView>
+		<ImageView android:src="@drawable/search_profile" android:id="@+id/imageView2" android:layout_width="wrap_content" android:layout_height="wrap_content"
+			android:layout_alignParentRight="true"></ImageView>
+	</RelativeLayout>
+
+
+	<EditText android:layout_width="match_parent" android:id="@+id/editText1" android:inputType="textPersonName" android:text="Who  First name, Surname"
+		android:layout_height="50dp">
+		<requestFocus></requestFocus>
+	</EditText>
+	<EditText android:layout_width="match_parent" android:id="@+id/editText2" android:inputType="textPostalAddress" android:text="Where  Suburb, state, postcode"
+		android:layout_height="50dp"></EditText>
+
+	<RelativeLayout android:layout_width="match_parent" android:id="@+id/relativeLayout2" android:layout_height="wrap_content">
+		<ImageView android:src="@drawable/search" android:id="@+id/imageView3" android:layout_width="wrap_content" android:layout_alignParentRight="true"
+			android:layout_height="wrap_content"></ImageView>
+	</RelativeLayout>
+
+	<ImageView android:src="@drawable/are_you_new_to_hi" android:id="@+id/imageView4" android:layout_width="wrap_content" android:layout_height="200dp"
+		android:background="@color/are_you_new_to_hi_purple"></ImageView>
+
+	<RelativeLayout android:layout_width="match_parent" android:id="@+id/relativeLayout3" android:layout_height="wrap_content">
+		<!-- <Button android:text="Create a free profile" android:id="@+id/create_profile" android:layout_width="wrap_content" android:layout_centerHorizontal="true" android:layout_height="50dp" 
+			android:background="@drawable/green_gradient" android:textColor="@color/white"></Button> -->
+
+		<Button android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/green_gradient_rounded_edges" android:textColor="@color/white"
+			android:id="@+id/ButtonTest" android:text="Create a free profile" android:layout_centerHorizontal="true" android:drawableLeft="@drawable/create_profile_icon">
+		</Button>
+	</RelativeLayout>
+</LinearLayout>
+ 
