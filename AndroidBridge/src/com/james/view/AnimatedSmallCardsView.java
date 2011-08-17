@@ -36,11 +36,12 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         dragAdaper = new DragAdapter(this);
 
         Resources res = context.getResources();
-        packFactory = new PackFactory();
+        packFactory = new PackFactory(new Screen(screenWidth, screenHeight));
         pack = packFactory.newInstance(res);
 
         pack.shuffle();
         pack.deal();
+        log("AnimatedSmallCardsView started");
     }
 
     @Override
@@ -54,26 +55,19 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         int y = card.y;
         switch (direction) {
             case DRAG_LEFT:
-                x = card.x - DRAG_AMOUNT;
-                y = card.y;
+                card.moveToLeft();
                 break;
             case DRAG_RIGHT:
-                x = card.x + DRAG_AMOUNT;
-                y = card.y;
+                card.moveToRight();
                 break;
             case DRAG_UP:
-                x = card.x;
-                y = card.y - DRAG_AMOUNT;
+                card.moveToTop();
                 break;
             case DRAG_DOWN:
-                x = card.x;
-                y = card.y + DRAG_AMOUNT;
+                card.moveToBottom();
                 break;
         }
-
-        card.move(x, y);
         invalidate();
-
     }
 
     @Override
@@ -82,7 +76,6 @@ public class AnimatedSmallCardsView extends View implements DragNotifiable {
         for (Player player : EnumSet.allOf(Player.class)) {
             Hand hand = pack.getHand(player);
             for (Card card : hand.cards()) {
-                log("Drawing card " + card);
                 card.getView().draw(canvas);
             }
         }

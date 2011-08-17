@@ -8,15 +8,18 @@ public class CardView {
     public int             x;
     private final int      height;
     private final Drawable image;
+    private final Screen   screen;
     private final int      width;
     int                    y;
 
-    public CardView(int width, int height, Drawable image) {
+    public CardView(Screen screen, int width, int height, Drawable image) {
+        this.screen = screen;
         this.width = width;
         this.height = height;
         this.image = image;
         x = 0;
         y = 0;
+        image.setBounds(x, y, width, height);
     }
 
     public void draw(Canvas canvas) {
@@ -34,5 +37,21 @@ public class CardView {
         image.setBounds(left, top, right, bottom);
 
         log("Moving to " + x + ", " + y);
+    }
+
+    public void moveToBottom() {
+        move(screen.getWidth() / 2, screen.getHeight());
+    }
+
+    public void moveToLeft() {
+        move(0, screen.getHeight() / 2);
+    }
+
+    public void moveToRight() {
+        move(screen.getWidth() - width, screen.getHeight() / 2);
+    }
+
+    public void moveToTop() {
+        move(screen.getWidth() / 2, 0);
     }
 }

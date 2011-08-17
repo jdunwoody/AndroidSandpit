@@ -19,8 +19,8 @@ public class PackFactory {
 
     private final CardFactory cardFactory;
 
-    public PackFactory() {
-        cardFactory = new CardFactory();
+    public PackFactory(Screen screen) {
+        cardFactory = new CardFactory(screen);
     }
 
     public Pack newInstance(Resources res) {
@@ -43,7 +43,6 @@ public class PackFactory {
     private Card addCard(Resources res, Suit suit, Rank rank) throws SecurityException, NoSuchFieldException, IllegalArgumentException,
             IllegalAccessException {
         String cardResource = (rank + "_" + suit).toLowerCase();
-        log("CardResourceFile: " + cardResource);
 
         Field cardResourceField = R.drawable.class.getField(cardResource);
 

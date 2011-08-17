@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:orientation="horizontal" xmlns:android="http://schemas.android.com/apk/res/android" android:background="@color/search_result_background_colour"
+	android:id="@+id/linearLayout1" android:layout_width="fill_parent" android:layout_height="wrap_content">
+
+	<ImageView android:src="@drawable/profile_icon" android:id="@+id/profile_icon" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true"></ImageView>
+
+	<LinearLayout android:id="@+id/name_and_icons_layout" android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="vertical">
+
+		<TextView android:id="@+id/search_result_name" android:layout_width="wrap_content" android:layout_height="wrap_content"></TextView>
+
+		<LinearLayout android:id="@+id/name_and_icons_layout" android:layout_width="wrap_content" android:layout_height="match_parent" android:orientation="horizontal">
+			<ImageButton android:src="@drawable/phone_icon" android:id="@+id/phone" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageButton>
+			<ImageButton android:src="@drawable/mobile_icon" android:id="@+id/mobile" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageButton>
+			<ImageButton android:src="@drawable/email_icon" android:id="@+id/email" android:layout_width="wrap_content" android:layout_height="wrap_content"></ImageButton>
+		</LinearLayout>
+	</LinearLayout>
+
+	<ImageView android:src="@drawable/right_arrow" android:layout_width="wrap_content" android:id="@+id/imageView1" android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical"></ImageView>
+</LinearLayout>

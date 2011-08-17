@@ -1,5 +1,6 @@
 package com.james;
 
+import static com.james.logging.Logging.log;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.Display;
@@ -18,8 +19,14 @@ public class BridgeTableActivity extends Activity {
         // MainView mainView = new MainView(this);
         // mainLayout.addView(mainView);
 
+        int width = getResources().getDisplayMetrics().widthPixels;
+        int height = getResources().getDisplayMetrics().heightPixels;
+        log("width: " + width + " height: " + height);
+
         Display display = getWindowManager().getDefaultDisplay();
-        View animagedSmallCardsView = new AnimatedSmallCardsView(this, display.getWidth(), display.getHeight());
+        log("width: " + display.getWidth() + " height: " + display.getHeight());
+
+        View animagedSmallCardsView = new AnimatedSmallCardsView(this, width, height);
         mainLayout.addView(animagedSmallCardsView);
     }
 }

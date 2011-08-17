@@ -4,8 +4,10 @@
 	<color name="green">#00ff00</color>
 	<color name="blue">#0000ff</color>
 	<color name="white">#FFF</color>
+	<color name="search_result_background_colour">#FFF</color>
 
 	<color name="are_you_new_to_hi_purple">#7b8698</color>
 	<color name="gradient_green_start">#cad201</color>
 	<color name="gradient_green_end">#8d9702</color>
+	<color name="light_purple">#7b8698</color>
 </resources>
