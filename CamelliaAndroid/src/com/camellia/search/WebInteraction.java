@@ -3,12 +3,11 @@ package com.camellia.search;
 import static com.camellia.logging.Logging.log;
 
 import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.util.ArrayList;
+import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.commons.io.IOUtils;
 import org.apache.http.HttpEntity;
 import org.apache.http.HttpException;
 import org.apache.http.HttpResponse;
@@ -19,9 +18,6 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.apache.http.message.BasicNameValuePair;
-import org.json.JSONArray;
-import org.json.JSONObject;
-import org.json.JSONTokener;
 
 public class WebInteraction {
 	private static final String BASE = null;
@@ -42,30 +38,11 @@ public class WebInteraction {
 		return body(web.execute(post));
 	}
 
-	public List<JsonSearchResult> get() throws Exception {
-		return parse(get(BASE + "page/list/"));
-	}
-
 	public String get(String url) throws Exception {
 		log("GETting: " + url);
+
 		HttpGet req = new HttpGet(url);
 		return body(web.execute(req));
-	}
-
-	private List<JsonSearchResult> parse(String response) throws Exception {
-		JSONArray array = (JSONArray) new JSONTokener(response).nextValue();
-		List<JsonSearchResult> results = new ArrayList<JsonSearchResult>();
-
-		for (int i = 0; i < array.length(); i++) {
-			JSONObject obj = array.getJSONObject(i);
-			// long timestamp = obj.getLong("date");
-			// String url = obj.getString("url");
-			// String title = obj.getString("title");
-			// boolean has_content = obj.getBoolean("has_content");
-			results.add(new JsonSearchResult());
-		}
-
-		return results;
 	}
 
 	private UrlEncodedFormEntity makeParamsForPost(Map<String, String> params) throws Exception {
@@ -102,12 +79,24 @@ public class WebInteraction {
 
 	private String readResponse(HttpEntity entity) throws Exception {
 		int contentLength = (int) entity.getContentLength();
-		char[] buffer = new char[contentLength];
-		InputStream contentStream = entity.getContent();
-		Reader reader = new InputStreamReader(contentStream);
+		log("Received " + contentLength + " characters in response");
 
-		reader.read(buffer, 0, contentLength);
+		String content = read(entity.getContent());
+		log("All content " + content);
+		return content;
 
-		return new String(buffer);
+		// char[] buffer = new char[contentLength];
+		// InputStream contentStream = entity.getContent();
+		// Reader reader = new InputStreamReader(contentStream);
+		// int bytesRead = reader.read(buffer, 0, contentLength);
+		// log(bytesRead + "Bytes read");
+		//
+		// return new String(buffer);
+	}
+
+	private String read(InputStream inputStream) throws Exception {
+		StringWriter writer = new StringWriter();
+		IOUtils.copy(inputStream, writer, "UTF-8");
+		return writer.toString();
 	}
 }

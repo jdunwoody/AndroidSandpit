@@ -2,7 +2,6 @@ package com.camellia;
 
 import static com.camellia.logging.Logging.log;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.http.client.HttpClient;
@@ -16,13 +15,14 @@ import android.util.Log;
 import com.camellia.logging.Logging;
 import com.camellia.search.SearchResult;
 import com.camellia.search.SearchResultAdapter;
+import com.camellia.search.SearchResults;
 import com.camellia.search.SearchService;
 import com.camellia.search.WebInteraction;
 
 public class SearchActivity extends ListActivity {
 	private ProgressDialog progressDialog = null;
 	private final SearchService search;
-	private List<SearchResult> searchResults;
+	private SearchResults searchResults;
 	private SearchResultAdapter adapter;
 	private Runnable showSearchResults;
 
@@ -36,7 +36,7 @@ public class SearchActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.search_results);
 		log("Creating searchActivity");
-		searchResults = new ArrayList<SearchResult>();
+		searchResults = new SearchResults();
 		this.adapter = new SearchResultAdapter(this, R.layout.search_result_row, searchResults);
 		setListAdapter(this.adapter);
 
@@ -56,8 +56,8 @@ public class SearchActivity extends ListActivity {
 	private void performSearch(Bundle searchParameters) {
 		log("Performing search");
 		try {
-			String name = "default name";
-			String address = "default address";
+			String name = "smith";
+			String address = "";
 			if (searchParameters != null) {
 				name = searchParameters.getString(MainActivity.NAME_FIELD);
 				address = searchParameters.getString(MainActivity.ADDRESS_FIELD);
@@ -65,59 +65,30 @@ public class SearchActivity extends ListActivity {
 
 			log("Search parameters supplied: " + name + " " + address);
 			this.searchResults = search.search(name, address);
-			log("found " + searchResults.size());
+			log("found " + searchResults.getResults().size() + " from a total of " + searchResults.getTotalAvailable());
 		} catch (Exception e) {
 			Log.e(Logging.TAG, e.getMessage());
 		}
 		runOnUiThread(returnRes);
 	}
 
-	//
-	// @Override
-	// public void onCreate(Bundle savedInstanceState) {
-	// super.onCreate(savedInstanceState);
-	// setContentView(R.layout.search_results);
-	//
-	// adapter = new SearchResultAdapter(this);
-	// setListAdapter(adapter);
-	//
-	// Bundle searchParameters = getIntent().getExtras();
-	// if (searchParameters != null) {
-	// String name = searchParameters.getString(MainActivity.NAME_FIELD);
-	// String address = searchParameters.getString(MainActivity.ADDRESS_FIELD);
-	//
-	// performSearch(name, address);
-	// // List<SearchResult> results = search.search(name, address);
-	// // LinearLayout resultsLayout = (LinearLayout)
-	// // findViewById(R.id.results);
-	// // LinearLayout searchResultLayout = (LinearLayout)
-	// // findViewById(R.layout.search_result);
-	// //
-	// // for (SearchResult result : results) {
-	// // View.inflate(this, resource, searchResultLayout)
-	// // resultsLayout.addView(searchResultLayout);
-	// // }
-	// }
-	// }
-
 	private Runnable returnRes = new Runnable() {
 		@Override
 		public void run() {
-			if (searchResults != null && searchResults.size() > 0) {
+			List<SearchResult> resultsList = searchResults.getResults();
+			int resultsListSize = resultsList.size();
+
+			if (resultsListSize > 0) {
 				log("Data has changed in listview");
 				adapter.notifyDataSetChanged();
 
-				log("Adding " + searchResults.size() + " results");
-				for (int i = 0; i < searchResults.size(); i++) {
-					adapter.add(searchResults.get(i));
+				log("Adding " + resultsListSize + " results");
+				for (SearchResult result : resultsList) {
+					adapter.add(result);
 				}
 			}
 			progressDialog.dismiss();
 			adapter.notifyDataSetChanged();
 		}
 	};
-
-	// private void performSearch(String name, String address) {
-	// ArrayAdapter adapter = new ArrayAdapter(this, data, listView, groupFrom, groupTo, childData, childLayout, childFrom, childTo);
-	// }
 }
