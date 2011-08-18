@@ -5,6 +5,9 @@ import static com.camellia.logging.Logging.log;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.http.client.HttpClient;
+import org.apache.http.impl.client.DefaultHttpClient;
+
 import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import com.camellia.logging.Logging;
 import com.camellia.search.SearchResult;
 import com.camellia.search.SearchResultAdapter;
 import com.camellia.search.SearchService;
+import com.camellia.search.WebInteraction;
 
 public class SearchActivity extends ListActivity {
 	private ProgressDialog progressDialog = null;
@@ -23,7 +27,8 @@ public class SearchActivity extends ListActivity {
 	private Runnable showSearchResults;
 
 	public SearchActivity() {
-		this.search = new SearchService();
+		HttpClient httpClient = new DefaultHttpClient();
+		this.search = new SearchService(new WebInteraction(httpClient));
 	}
 
 	@Override

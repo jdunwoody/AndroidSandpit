@@ -6,13 +6,27 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class SearchService {
+	private final WebInteraction webInteraction;
+
+	public SearchService(WebInteraction webInteraction) {
+		this.webInteraction = webInteraction;
+	}
 
 	public List<SearchResult> search(String name, String address) {
 		log("Searching");
-		List<SearchResult> result = new ArrayList<SearchResult>();
-		for (int i = 0; i < 10; i++) {
-			result.add(new SearchResult("Adam Smith" + i));
+		return parse(makeWebRequest(name, address));
+	}
+
+	private List<SearchResult> parse(String jsonResponse) {
+		return new ArrayList<SearchResult>();
+	}
+
+	private String makeWebRequest(String name, String location) {
+		String url = String.format("/search/people?name=%s&location=%s", name, location);
+		try {
+			return webInteraction.get(url);
+		} catch (Exception e) {
+			throw new RuntimeException(e);
 		}
-		return result;
 	}
 }
