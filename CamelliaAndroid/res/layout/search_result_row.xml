@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="wrap_content"
+	android:background="@color/search_result_background_colour">
+
+	<ImageView android:id="@+id/profile_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/profile_icon"
+		android:layout_gravity="center_vertical|left" />
+
+	<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@color/search_result_background_colour"
+		android:layout_gravity="fill_horizontal|bottom" android:layout_weight="1">
+
+		<TextView android:id="@+id/search_result_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:singleLine="true" 
+		android:text="name here" android:textColor="@color/search_text" android:padding="10dp"/>
+
+		<LinearLayout android:id="@+id/name_and_icons_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
+			<ImageButton android:src="@drawable/phone_icon" android:id="@+id/phone" android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:background="@color/search_result_background_colour"></ImageButton>
+			<ImageButton android:src="@drawable/mobile_icon" android:id="@+id/mobile" android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:background="@color/search_result_background_colour"></ImageButton>
+			<ImageButton android:src="@drawable/email_icon" android:id="@+id/email" android:layout_width="wrap_content" android:layout_height="wrap_content"
+				android:background="@color/search_result_background_colour"></ImageButton>
+		</LinearLayout>
+	</LinearLayout>
+
+	<ImageView android:id="@+id/search_details" android:src="@drawable/right_arrow" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_gravity="center_vertical|right" android:focusable="true"></ImageView>
+</LinearLayout>

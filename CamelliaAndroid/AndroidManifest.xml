@@ -19,6 +19,12 @@
                 <action android:name="android.intent.action.SEARCH"></action>
             </intent-filter>
         </activity>
+        <activity android:name="SoftwarePassionView">
+            <intent-filter>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+                <action android:name="android.intent.action.SEARCH_LONG_PRESS"></action>
+            </intent-filter>
+        </activity>
 
     </application>
 </manifest>

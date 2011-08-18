@@ -10,4 +10,5 @@
 	<color name="gradient_green_start">#cad201</color>
 	<color name="gradient_green_end">#8d9702</color>
 	<color name="light_purple">#7b8698</color>
+	<color name="search_text">#000</color>
 </resources>
