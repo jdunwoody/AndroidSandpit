@@ -11,6 +11,9 @@ import android.app.ListActivity;
 import android.app.ProgressDialog;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 
 import com.camellia.logging.Logging;
 import com.camellia.search.SearchResult;
@@ -25,6 +28,8 @@ public class SearchActivity extends ListActivity {
 	private SearchResults searchResults;
 	private SearchResultAdapter adapter;
 	private Runnable showSearchResults;
+	private ListView searchResultsListView;
+	private ListView listView;
 
 	public SearchActivity() {
 		HttpClient httpClient = new DefaultHttpClient();
@@ -40,6 +45,8 @@ public class SearchActivity extends ListActivity {
 		this.adapter = new SearchResultAdapter(this, R.layout.search_result_row, searchResults);
 		setListAdapter(this.adapter);
 
+		listView = getListView();
+
 		final Bundle searchParameters = getIntent().getExtras();
 
 		showSearchResults = new Runnable() {
@@ -48,9 +55,55 @@ public class SearchActivity extends ListActivity {
 				performSearch(searchParameters);
 			}
 		};
+
 		Thread thread = new Thread(null, showSearchResults, "MagentoBackground");
 		thread.start();
 		progressDialog = ProgressDialog.show(this, "Please wait...", "Retrieving data ...", true);
+	}
+
+	// getListView().setOnItemClickListener(new AdapterView.OnItemClickListener() {
+	// public void onItemClick(AdapterView parent, View v, int position, long id) {
+	// // Start your Activity according to the item just clicked.
+	// }
+	// });
+
+	// listView.setTextFilterEnabled(true);
+	// try {
+	// log("Setting onItemClickListener");
+	//
+
+	// getListView().setOnItemClickListener(new OnItemClickListener() {
+	// @Override
+	// public void onItemClick(AdapterView parent, View view, int position, long id) {
+	// log("clickity click");
+	// listItemClicked(parent, view, position, id);
+	// }
+	//
+	// });
+	// } catch (Exception e) {
+	// Log.e(Logging.TAG, e.getMessage());
+	// }
+
+	public void phoneClicked(View view) {
+		log("Phone clicked");
+	}
+
+	public void mobileClicked(View view) {
+		log("Mobile clicked");
+	}
+
+	public void emailClicked(View view) {
+		log("Email clicked");
+	}
+
+	@Override
+	protected void onListItemClick(ListView l, View v, int position, long id) {
+		// getListView().getItemAtPosition(position)
+		log("Clickity click from onListItemClick: " + id);
+	}
+
+	private void listItemClicked(AdapterView<?> parent, View view, int position, long id) {
+		log("Clickity click from onItemClick: " + id);
 	}
 
 	private void performSearch(Bundle searchParameters) {

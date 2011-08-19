@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent"
-	android:layout_height="fill_parent" android:background="@drawable/purple_gradient" android:id="@layout/search_results">
+	android:layout_height="fill_parent" android:id="@layout/search_results">
+	<!-- android:background="@drawable/purple_gradient" -->
 
 	<include layout="@layout/header_row" />
 
-	<!-- <ListView android:id="@+id/android:list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#00FF00" android:layout_weight="1" 
-		android:drawSelectorOnTop="false" /> -->
-
-	<ListView android:id="@+id/android:list" android:layout_width="fill_parent" android:layout_height="fill_parent" />
+	<ListView android:id="@+id/android:list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:cacheColorHint="@color/search_result_background_colour"/>
 	<TextView android:id="@+id/android:empty" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="no data" />
+	
 </LinearLayout>
 
+<!-- <ListView android:id="@+id/android:list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#00FF00" android:layout_weight="1" 
+	android:drawSelectorOnTop="false" /> -->
 
 <!-- <LinearLayout android:id="@+id/results" android:layout_width="match_parent" android:layout_height="wrap_content"> </LinearLayout> -->
 <!-- <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="?android:attr/listPreferredItemHeight" 
