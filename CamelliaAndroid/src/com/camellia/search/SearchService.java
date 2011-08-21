@@ -10,6 +10,7 @@ import org.json.JSONTokener;
 
 import android.util.Log;
 
+import com.camellia.http.WebInteraction;
 import com.camellia.logging.Logging;
 
 public class SearchService {

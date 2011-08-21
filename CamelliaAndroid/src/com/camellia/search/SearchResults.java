@@ -12,6 +12,13 @@ public class SearchResults {
 		this.results = new ArrayList<SearchResult>();
 	}
 
+	public SearchResults(SearchResult searchResult) {
+		this();
+		this.results.add(searchResult);
+		this.setTotalAvailable(1);
+		this.setHasMore(false);
+	}
+
 	public boolean hasMore() {
 		return hasMore;
 	}

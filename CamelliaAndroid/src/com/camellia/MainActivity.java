@@ -1,5 +1,8 @@
 package com.camellia;
 
+import com.camellia.header.HeaderRowDelegate;
+import com.camellia.header.HeaderRowSupported;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,15 +10,17 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements HeaderRowSupported {
 	public static final String ADDRESS_FIELD = "address";
 	public static final String NAME_FIELD = "name";
 	private final MainActivity mainActivity;
 	private EditText nameInput;
 	private EditText locationInput;
+	private HeaderRowDelegate headerRowDelegate;
 
 	public MainActivity() {
 		mainActivity = this;
+		this.headerRowDelegate = new HeaderRowDelegate(this);
 	}
 
 	@Override
@@ -36,5 +41,10 @@ public class MainActivity extends Activity {
 				startActivity(i);
 			}
 		});
+	}
+
+	@Override
+	public void goHome(View view) {
+		headerRowDelegate.handleGoHome();
 	}
 }

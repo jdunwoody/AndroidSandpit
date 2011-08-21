@@ -1,4 +1,4 @@
-package com.camellia;
+package com.camellia.action;
 
 public class PhoneAction {
 

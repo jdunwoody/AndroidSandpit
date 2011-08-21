@@ -14,15 +14,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.camellia.action.PhoneAction;
+import com.camellia.action.SendDetailsAction;
+import com.camellia.action.ViewProfileAction;
+import com.camellia.header.HeaderRowDelegate;
+import com.camellia.header.HeaderRowSupported;
+import com.camellia.http.WebInteraction;
 import com.camellia.logging.Logging;
 import com.camellia.search.SearchResult;
 import com.camellia.search.SearchResultAdapter;
 import com.camellia.search.SearchResultListViewHolder;
 import com.camellia.search.SearchResults;
 import com.camellia.search.SearchService;
-import com.camellia.search.WebInteraction;
 
-public class SearchActivity extends ListActivity {
+public class SearchActivity extends ListActivity implements HeaderRowSupported {
 	private ProgressDialog progressDialog = null;
 	private final SearchService search;
 	private SearchResults searchResults;
@@ -32,11 +37,15 @@ public class SearchActivity extends ListActivity {
 	private ListView listView;
 	private SendDetailsAction sendDetailsAction;
 	private PhoneAction phoneAction;
+	private ViewProfileAction viewDetailsAction;
+	private HeaderRowDelegate headerRowDelegate;
 
 	public SearchActivity() {
 		HttpClient httpClient = new DefaultHttpClient();
 		this.search = new SearchService(new WebInteraction(httpClient));
 		this.sendDetailsAction = new SendDetailsAction();
+		this.viewDetailsAction = new ViewProfileAction();
+		this.headerRowDelegate = new HeaderRowDelegate(this);
 	}
 
 	@Override
@@ -91,16 +100,24 @@ public class SearchActivity extends ListActivity {
 	}
 
 	@Override
-	protected void onListItemClick(ListView listView, View view, int position, long id) {
-		// getListView().getItemAtPosition(position)
-		log("Clickity click from onListItemClick: " + id);
+	public void goHome(View view) {
+		headerRowDelegate.handleGoHome();
+	}
 
+	@Override
+	protected void onListItemClick(ListView listView, View view, int position, long id) {
+		log("Search result clicked");
+
+		SearchResultListViewHolder viewHolder = (SearchResultListViewHolder) view.getTag();
+		if (viewHolder != null) {
+			viewDetailsAction.open(this, viewHolder.name.getText().toString());
+		}
 	}
 
 	private void performSearch(Bundle searchParameters) {
 		log("Performing search");
 		try {
-			String name = "smith";
+			String name = "default";
 			String address = "";
 			if (searchParameters != null) {
 				name = searchParameters.getString(MainActivity.NAME_FIELD);
@@ -112,6 +129,7 @@ public class SearchActivity extends ListActivity {
 			log("found " + searchResults.getResults().size() + " from a total of " + searchResults.getTotalAvailable());
 		} catch (Exception e) {
 			Log.e(Logging.TAG, e.getMessage());
+			searchResults = new SearchResults(new SearchResult("Sample Result"));
 		}
 		runOnUiThread(returnRes);
 	}

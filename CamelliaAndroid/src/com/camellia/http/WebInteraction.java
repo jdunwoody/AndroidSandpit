@@ -1,4 +1,4 @@
-package com.camellia.search;
+package com.camellia.http;
 
 import static com.camellia.logging.Logging.log;
 

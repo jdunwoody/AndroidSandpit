@@ -26,6 +26,12 @@
                 <action android:name="android.intent.action.SEARCH_LONG_PRESS"></action>
             </intent-filter>
         </activity>
+        <activity android:name=".ViewProfileActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"></action>
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
 
     </application>
 </manifest>
