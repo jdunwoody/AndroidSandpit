@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
-    <style name="inputField" parent="android:Widget.EditText">
-        <item name="android:background">@drawable/rounded_input</item>
-        <item name="android:layout_marginLeft">20dip</item>
-        <item name="android:layout_marginRight">20dip</item>
-        <item name="android:layout_marginTop">10dip</item>
-        <item name="android:paddingLeft">20dip</item>
-        <item name="android:singleLine">true</item>
-    </style>
+	<style name="inputField" parent="android:Widget.EditText">
+		<item name="android:background">@drawable/rounded_input</item>
+		<item name="android:layout_marginLeft">20dip</item>
+		<item name="android:layout_marginRight">20dip</item>
+		<item name="android:layout_marginTop">10dip</item>
+		<item name="android:paddingLeft">20dip</item>
+		<item name="android:singleLine">true</item>
+	</style>
+	<style name="profile_navigation_icon">
+		<item name="android:padding">10dip</item>
+		<item name="android:layout_gravity">center_vertical</item>
+	</style>
 </resources>

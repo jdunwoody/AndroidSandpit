@@ -6,5 +6,11 @@
 
 	<include layout="@layout/view_profile_nav" />
 
+	<LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:id="@+id/linearLayout1" android:background="@color/white" android:orientation="vertical">
+		<ImageView android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/profile_icon" android:id="@+id/profile_profile_icon"></ImageView>
+		<TextView android:layout_width="wrap_content" android:text="name here" android:layout_height="wrap_content" android:id="@+id/profile_name" android:textAppearance="?android:attr/textAppearanceLarge"></TextView>
+		<TextView android:layout_width="wrap_content" android:text="Description" android:layout_height="wrap_content" android:id="@+id/profile_description" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+		<TextView android:layout_width="wrap_content" android:text="vanity url" android:layout_height="wrap_content" android:id="@+id/vanity_url" android:textAppearance="?android:attr/textAppearanceMedium"></TextView>
+	</LinearLayout>
+
 </LinearLayout>
- 

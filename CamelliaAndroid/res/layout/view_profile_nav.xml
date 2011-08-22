@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="match_parent"
-	android:layout_height="match_parent">
-    <Button android:text="Back" android:id="@+id/back" android:layout_height="wrap_content" android:layout_width="wrap_content"></Button>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent"
+	android:layout_height="wrap_content" android:background="@color/search_results_stats_background">
+
+	<Button android:text="Back" android:id="@+id/back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:onClick="gotoBack"></Button>
+
+	<ImageView style="@style/profile_navigation_icon" android:src="@drawable/arrow_up" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:id="@+id/profile_up" android:onClick="gotoPreviousProfile"></ImageView>
+	<ImageView style="@style/profile_navigation_icon" android:src="@drawable/arrow_down" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:id="@+id/profile_down" android:onClick="gotoNextProfile"></ImageView>
+	<TextView android:text="1 of 1" android:layout_height="wrap_content" android:textAppearance="?android:attr/textAppearanceMedium" android:id="@+id/profile_count"
+		android:layout_width="wrap_content"></TextView>
+	<ImageView style="@style/profile_navigation_icon" android:src="@drawable/icon_plus" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:id="@+id/profile_add" android:onClick="gotoAddProfileProfile"></ImageView>
+	<ImageView style="@style/profile_navigation_icon" android:src="@drawable/arrow_more" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:id="@+id/profile_more" android:onClick="gotoMoreProfile"></ImageView>
 
 </LinearLayout>
  
