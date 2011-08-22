@@ -1,22 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:background="@drawable/purple_gradient" android:id="@layout/main">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="fill_parent" android:background="@drawable/purple_gradient" android:id="@layout/main">
 
 	<include android:id="@+id/header_row" layout="@layout/header_row" />
 
-	<EditText android:layout_width="match_parent" android:id="@+id/name_input" android:inputType="textPersonName" android:layout_height="50dp" android:singleLine="true"
-		android:autoText="true" android:hint="Who First name, Surname" android:background="@drawable/rounded_input" android:paddingLeft="20dip" android:layout_marginTop="10dip"
-		android:layout_marginLeft="20dip" android:layout_marginRight="20dip">
+	<EditText style="@style/inputField" android:hint="Who First name, Surname" android:layout_width="match_parent" android:layout_height="50dp" android:id="@+id/name_input"
+		android:inputType="textPersonName">
 		<requestFocus></requestFocus>
 	</EditText>
 
-	<EditText android:layout_width="match_parent" android:id="@+id/address_input" android:inputType="textPostalAddress" android:layout_height="50dp" android:singleLine="true"
-		android:hint="Where  Suburb, city state" android:background="@drawable/rounded_input" android:paddingLeft="20dip" android:layout_marginTop="10dip" android:layout_marginLeft="20dip"
-		android:layout_marginRight="20dip"></EditText>
+	<EditText style="@style/inputField" android:layout_width="match_parent" android:id="@+id/address_input" android:inputType="textPostalAddress"
+		android:layout_height="50dp" android:hint="Where  Suburb, city state"></EditText>
 
-	<RelativeLayout android:layout_width="match_parent" android:id="@+id/relativeLayout2" android:layout_height="wrap_content">
-		<ImageButton android:src="@drawable/search" android:id="@+id/search" android:layout_width="wrap_content" android:layout_height="wrap_content"
-			android:layout_alignParentRight="true" android:background="@drawable/purple_gradient"></ImageButton>
+	<RelativeLayout android:layout_width="match_parent" android:id="@+id/relativeLayout2" android:layout_height="wrap_content" android:paddingRight="15dip"
+		android:paddingLeft="10dip" android:paddingBottom="10dip" android:paddingTop="10dip">
+
+		<ImageButton android:id="@+id/search" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/search_button"
+			android:layout_marginBottom="10sp" android:paddingLeft="20dip" android:background="@drawable/white_rounded_edges" android:paddingRight="20dip" android:paddingTop="10dip"
+			android:layout_alignParentRight="true" android:paddingBottom="10dip" />
 	</RelativeLayout>
 
 	<ImageView android:src="@drawable/are_you_new_to_hi" android:layout_width="wrap_content" android:layout_height="200dp" android:background="@color/are_you_new_to_hi_purple"

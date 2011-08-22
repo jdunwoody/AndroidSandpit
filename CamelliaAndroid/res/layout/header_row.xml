@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout android:id="@+id/header_row" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="50dp"
-	android:background="@drawable/purple_gradient">
-	<ImageView android:src="@drawable/hi" android:id="@+id/imageView1" android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true" android:onClick="goHome"></ImageView>
+<RelativeLayout android:id="@+id/header_row" xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+	android:layout_height="wrap_content" android:background="@drawable/purple_gradient">
+	<ImageView android:src="@drawable/logo_hi" android:id="@+id/imageView1" android:layout_width="wrap_content" android:layout_height="wrap_content"
+		android:layout_alignParentLeft="true" android:onClick="goHome" android:layout_centerVertical="true"></ImageView>
 
 	<ImageView android:src="@drawable/search_profile" android:id="@+id/view_profile" android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:layout_alignParentRight="true"></ImageView>

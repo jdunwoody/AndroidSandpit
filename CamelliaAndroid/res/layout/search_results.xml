@@ -1,13 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent"
 	android:layout_height="fill_parent" android:id="@layout/search_results">
-	<!-- android:background="@drawable/purple_gradient" -->
 
 	<include layout="@layout/header_row" />
 
-	<ListView android:id="@+id/android:list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:cacheColorHint="@color/search_result_background_colour"/>
+	<LinearLayout android:id="@+id/search_stats_layout" android:layout_width="fill_parent" android:layout_height="wrap_content" android:background="@color/search_results_stats_background">
+
+		<LinearLayout android:id="@+id/search_stats_total_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:background="@drawable/white_rounded_edges"
+			android:layout_margin="10dip" android:padding="3dip">
+			<ImageView android:src="@drawable/icon_all" android:id="@+id/imageView1" android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:paddingRight="5dip"></ImageView>
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:text="All" android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_gravity="center_vertical" android:id="@+id/search_results_stats_all_text" android:textColor="@color/black" android:paddingRight="5dip"></TextView>
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:text="0" android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_gravity="center_vertical" android:id="@+id/search_results_stats_total" android:textStyle="bold" android:textColor="@color/black"></TextView>
+		</LinearLayout>
+
+		<LinearLayout android:id="@+id/search_stats_hi_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_margin="10dip"
+			android:padding="3dip">
+			<ImageView android:src="@drawable/icon_hi" android:id="@+id/hi_icon" android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:paddingRight="5dip"></ImageView>
+			<TextView android:textAppearance="?android:attr/textAppearanceMedium" android:text="0" android:layout_height="wrap_content" android:layout_width="wrap_content"
+				android:layout_gravity="center_vertical" android:id="@+id/search_results_stats_hi" android:textColor="@color/grey"></TextView>
+		</LinearLayout>
+	</LinearLayout>
+
+	<ListView android:id="@+id/android:list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:cacheColorHint="@color/search_result_background_colour" />
 	<TextView android:id="@+id/android:empty" android:layout_width="fill_parent" android:layout_height="fill_parent" android:text="no data" />
-	
+
 </LinearLayout>
 
 <!-- <ListView android:id="@+id/android:list" android:layout_width="fill_parent" android:layout_height="fill_parent" android:background="#00FF00" android:layout_weight="1" 

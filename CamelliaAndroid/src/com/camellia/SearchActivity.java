@@ -13,8 +13,8 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
-import com.camellia.action.PhoneAction;
 import com.camellia.action.SendDetailsAction;
 import com.camellia.action.ViewProfileAction;
 import com.camellia.header.HeaderRowDelegate;
@@ -33,12 +33,12 @@ public class SearchActivity extends ListActivity implements HeaderRowSupported {
 	private SearchResults searchResults;
 	private SearchResultAdapter adapter;
 	private Runnable showSearchResults;
-	private ListView searchResultsListView;
 	private ListView listView;
 	private SendDetailsAction sendDetailsAction;
-	private PhoneAction phoneAction;
 	private ViewProfileAction viewDetailsAction;
 	private HeaderRowDelegate headerRowDelegate;
+	private TextView totalSearchResultsCountView;
+	private TextView hiSearchResultsCountView;
 
 	public SearchActivity() {
 		HttpClient httpClient = new DefaultHttpClient();
@@ -59,6 +59,9 @@ public class SearchActivity extends ListActivity implements HeaderRowSupported {
 
 		listView = getListView();
 		listView.setTextFilterEnabled(true);
+
+		this.totalSearchResultsCountView = (TextView) findViewById(R.id.search_results_stats_total);
+		this.hiSearchResultsCountView = (TextView) findViewById(R.id.search_results_stats_hi);
 
 		final Bundle searchParameters = getIntent().getExtras();
 
@@ -126,12 +129,18 @@ public class SearchActivity extends ListActivity implements HeaderRowSupported {
 
 			log("Search parameters supplied: " + name + " " + address);
 			this.searchResults = search.search(name, address);
+			updateStats();
 			log("found " + searchResults.getResults().size() + " from a total of " + searchResults.getTotalAvailable());
 		} catch (Exception e) {
 			Log.e(Logging.TAG, e.getMessage());
 			searchResults = new SearchResults(new SearchResult("Sample Result"));
 		}
 		runOnUiThread(returnRes);
+	}
+
+	private void updateStats() {
+		totalSearchResultsCountView.setText(searchResults.getTotalAvailable());
+		hiSearchResultsCountView.setText(searchResults.getTotalAvailable());
 	}
 
 	private Runnable returnRes = new Runnable() {
