@@ -66,8 +66,7 @@ public class SearchActivity extends ListActivity implements HeaderRowSupported {
 	private final ViewProfileAction viewDetailsAction;
 
 	public SearchActivity() {
-		HttpClient httpClient = new DefaultHttpClient();
-		search = new SearchService(new WebInteraction(httpClient));
+		search = new SearchService(new WebInteraction(new DefaultHttpClient()));
 		sendDetailsAction = new SendDetailsAction();
 		viewDetailsAction = new ViewProfileAction();
 		headerRowDelegate = new HeaderRowDelegate(this);

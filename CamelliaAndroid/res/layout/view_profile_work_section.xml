@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical"
+	android:background="@color/white">
+	<TextView style="@style/contact_point_section" android:layout_width="wrap_content" android:text="Work" android:layout_height="wrap_content"></TextView>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal"
+		android:background="@color/white">
+		<ImageView style="@style/contact_point_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_lock"></ImageView>
+		<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:text="Request address" style="@style/view_profile_contact_point_text"></TextView>
+	</LinearLayout>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal"
+		android:background="@color/white">
+		<ImageView style="@style/contact_point_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_mobile"></ImageView>
+		<TextView android:layout_width="wrap_content" android:text="0403 538 741" android:layout_height="wrap_content" style="@style/view_profile_contact_point_text"></TextView>
+	</LinearLayout>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal"
+		android:background="@color/white">
+		<ImageView style="@style/contact_point_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_phone"></ImageView>
+		<TextView android:layout_width="wrap_content" android:text="(03) 9466 3886" android:layout_height="wrap_content" style="@style/view_profile_contact_point_text"></TextView>
+	</LinearLayout>
+
+	<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal"
+		android:background="@color/white">
+		<ImageView style="@style/contact_point_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/icon_email"></ImageView>
+		<TextView style="@style/view_profile_contact_point_text" android:layout_width="wrap_content" android:text="asmith@bigpond.com.au" android:layout_height="wrap_content"></TextView>
+	</LinearLayout>
+</LinearLayout>
+
