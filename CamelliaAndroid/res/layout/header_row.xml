@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout android:id="@+id/header_row" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/purple_gradient"
 	xmlns:android="http://schemas.android.com/apk/res/android" android:gravity="right">
-	<include layout="@layout/hi_home" android:id="@+id/imageView1_ref" android:layout_width="wrap_content" android:layout_height="wrap_content"
-		android:layout_alignParentLeft="true" android:layout_centerVertical="true" />
+	<include layout="@layout/hi_home" android:id="@+id/imageView1_ref" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_alignParentLeft="true"
+		android:layout_centerVertical="true" />
 
 	<ImageView android:layout_width="wrap_content" android:src="@drawable/nav_icon_magnifying_glass" android:id="@+id/header_search" android:layout_height="wrap_content"
 		android:layout_toLeftOf="@+id/header_profile" android:layout_centerVertical="true" android:layout_margin="10dip" android:onClick="onSearchPopup"></ImageView>
 	<ImageView android:layout_width="wrap_content" android:src="@drawable/nav_icon_person" android:id="@+id/header_profile" android:layout_height="wrap_content"
 		android:layout_alignParentRight="true" android:layout_centerVertical="true" android:layout_margin="10dip" android:onClick="onProfileMenu"></ImageView>
-</RelativeLayout> 
+</RelativeLayout>  

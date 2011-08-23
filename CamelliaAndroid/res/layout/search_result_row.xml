@@ -2,20 +2,21 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="fill_parent" android:layout_height="wrap_content"
 	android:background="@color/search_result_background_colour">
 	<ImageView android:id="@+id/profile_icon" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/profile_icon"
-		android:layout_gravity="center_vertical|left" />
+		android:layout_gravity="center_vertical|left" android:layout_margin="10dip" />
 	<LinearLayout android:orientation="vertical" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="fill_horizontal|bottom"
 		android:layout_weight="1">
-		<!-- android:background="@color/search_result_background_colour" -->
-		<TextView android:id="@+id/search_result_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="name here"
-			android:textColor="@color/search_text" android:padding="10dp" android:singleLine="true" />
+		<TextView android:id="@+id/search_result_name" android:layout_width="fill_parent" android:layout_height="wrap_content" android:text="name here" android:textColor="@color/search_text"
+			android:padding="10dp" android:singleLine="true" android:textAppearance="?android:attr/textAppearanceLarge" />
+
 		<LinearLayout android:id="@+id/name_and_icons_layout" android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="horizontal">
-			<ImageView android:src="@drawable/search_result_icon_telephone" android:id="@+id/phone" android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:onClick="phoneClicked" android:clickable="true"></ImageView>
-			<ImageView android:src="@drawable/search_result_icon_mobile" android:id="@+id/mobile" android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:onClick="mobileClicked" android:clickable="true"></ImageView>
-			<ImageView android:src="@drawable/search_result_icon_email" android:id="@+id/email" android:layout_width="wrap_content" android:layout_height="wrap_content"
-				android:onClick="emailClicked" android:clickable="true"></ImageView>
+			<ImageView style="@style/search_result_icon" android:src="@drawable/search_result_icon_telephone" android:id="@+id/phone" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:onClick="phoneClicked"></ImageView>
+			<ImageView style="@style/search_result_icon" android:src="@drawable/search_result_icon_mobile" android:id="@+id/mobile" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:onClick="mobileClicked"></ImageView>
+			<ImageView style="@style/search_result_icon" android:src="@drawable/search_result_icon_email" android:id="@+id/email" android:layout_width="wrap_content"
+				android:layout_height="wrap_content" android:onClick="emailClicked"></ImageView>
 		</LinearLayout>
+
 	</LinearLayout>
 	<ImageView android:id="@+id/search_details" android:src="@drawable/right_arrow" android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:layout_gravity="center_vertical|right"></ImageView>

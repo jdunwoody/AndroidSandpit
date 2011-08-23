@@ -17,12 +17,11 @@ import com.camellia.profile.ViewProfileService;
 
 public class ViewProfileActivity extends Activity implements HeaderRowSupported {
 
-    private HeaderRowDelegate        headerRowDelegate;
-    private LayoutInflater           layoutInflater;
-    private final ViewProfileService viewProfileService;
+    private HeaderRowDelegate  headerRowDelegate;
+    private LayoutInflater     layoutInflater;
+    private ViewProfileService viewProfileService;
 
     public ViewProfileActivity() {
-        viewProfileService = new ViewProfileService(new WebInteraction(new DefaultHttpClient()));
         log("ViewProfileActivity...");
     }
 
@@ -66,9 +65,11 @@ public class ViewProfileActivity extends Activity implements HeaderRowSupported 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.view_profile);
-        // layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        // headerRowDelegate = new HeaderRowDelegate(this);
-        //
+
+        viewProfileService = new ViewProfileService(new WebInteraction(new DefaultHttpClient()));
+        layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+        headerRowDelegate = new HeaderRowDelegate(this);
+
         // String profileId = getIntent().getStringExtra(ViewProfileAction.PROFILE_ID);
         // Profile profile = viewProfileService.load(profileId, profileId);
         //
