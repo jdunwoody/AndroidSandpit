@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="horizontal" android:layout_width="match_parent"
 	android:layout_height="wrap_content" android:background="@color/search_results_stats_background">
 
-	<Button android:text="Back" android:id="@+id/back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:onClick="gotoBack"></Button>
+	<Button android:text="Back" android:id="@+id/back" android:layout_height="wrap_content" android:layout_width="wrap_content" android:onClick="goBack"></Button>
 
 	<ImageView style="@style/profile_navigation_icon" android:src="@drawable/arrow_up" android:layout_width="wrap_content" android:layout_height="wrap_content"
 		android:id="@+id/profile_up" android:onClick="gotoPreviousProfile"></ImageView>

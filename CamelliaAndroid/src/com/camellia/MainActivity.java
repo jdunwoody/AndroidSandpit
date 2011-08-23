@@ -2,11 +2,14 @@ package com.camellia;
 
 import static com.camellia.logging.Logging.log;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageButton;
 
@@ -16,15 +19,35 @@ import com.camellia.header.HeaderRowSupported;
 public class MainActivity extends Activity implements HeaderRowSupported, TextWatcher {
 	public static final String ADDRESS_FIELD = "address";
 	public static final String NAME_FIELD = "name";
+	private final HeaderRowDelegate headerRowDelegate;
+	private EditText locationInput;
 	private final MainActivity mainActivity;
 	private EditText nameInput;
-	private EditText locationInput;
-	private HeaderRowDelegate headerRowDelegate;
 	private ImageButton searchButton;
 
 	public MainActivity() {
 		mainActivity = this;
-		this.headerRowDelegate = new HeaderRowDelegate(this);
+		headerRowDelegate = new HeaderRowDelegate(this);
+	}
+
+	@Override
+	public void afterTextChanged(Editable editable) {
+		if (nameInput.getText().length() > 0) {
+			log("Enabling search button");
+			enableSearchButton(true);
+		} else {
+			log("Enabling search button");
+			enableSearchButton(false);
+		}
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+	}
+
+	@Override
+	public void goHome(View view) {
+		headerRowDelegate.handleGoHome();
 	}
 
 	@Override
@@ -50,32 +73,22 @@ public class MainActivity extends Activity implements HeaderRowSupported, TextWa
 		});
 	}
 
-	private void enableSearchButton(boolean state) {
-		searchButton.setEnabled(state);
-		searchButton.setClickable(state);
+	@Override
+	public void onProfileMenu(View view) {
+		headerRowDelegate.handleProfileMenu();
 	}
 
 	@Override
-	public void goHome(View view) {
-		headerRowDelegate.handleGoHome();
-	}
-
-	@Override
-	public void afterTextChanged(Editable editable) {
-		if (nameInput.getText().length() > 0) {
-			log("Enabling search button");
-			enableSearchButton(true);
-		} else {
-			log("Enabling search button");
-			enableSearchButton(false);
-		}
-	}
-
-	@Override
-	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+	public void onSearchPopup(View view) {
+		headerRowDelegate.handleSearchPopup((LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE), (ViewGroup) findViewById(R.id.header_row));
 	}
 
 	@Override
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) {
+	}
+
+	private void enableSearchButton(boolean state) {
+		searchButton.setEnabled(state);
+		searchButton.setClickable(state);
 	}
 }

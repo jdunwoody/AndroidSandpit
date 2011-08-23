@@ -27,6 +27,13 @@ public class WebInteraction {
 		this.web = web;
 	}
 
+	public String get(String url) throws Exception {
+		log("GETting: " + url);
+
+		HttpGet req = new HttpGet(url);
+		return body(web.execute(req));
+	}
+
 	public String post(String url, Map<String, String> params) throws Exception {
 		params.put("json", "true");
 		params.put("quiet", "true");
@@ -36,31 +43,6 @@ public class WebInteraction {
 
 		post.setEntity(makeParamsForPost(params));
 		return body(web.execute(post));
-	}
-
-	public String get(String url) throws Exception {
-		log("GETting: " + url);
-
-		HttpGet req = new HttpGet(url);
-		return body(web.execute(req));
-	}
-
-	private UrlEncodedFormEntity makeParamsForPost(Map<String, String> params) throws Exception {
-		return new UrlEncodedFormEntity(makeParamList(params));
-	}
-
-	private String makeParamsForGet(Map<String, String> params) {
-		return URLEncodedUtils.format(makeParamList(params), "UTF-8");
-	}
-
-	private List<NameValuePair> makeParamList(Map<String, String> params) {
-		List<NameValuePair> paramList = new java.util.ArrayList<NameValuePair>();
-
-		for (String param : params.keySet()) {
-			paramList.add(new BasicNameValuePair(param, params.get(param)));
-		}
-
-		return paramList;
 	}
 
 	private String body(HttpResponse result) throws Exception {
@@ -75,6 +57,30 @@ public class WebInteraction {
 		default:
 			throw new HttpException("Response returned code " + code + " -- body content: " + body);
 		}
+	}
+
+	private List<NameValuePair> makeParamList(Map<String, String> params) {
+		List<NameValuePair> paramList = new java.util.ArrayList<NameValuePair>();
+
+		for (String param : params.keySet()) {
+			paramList.add(new BasicNameValuePair(param, params.get(param)));
+		}
+
+		return paramList;
+	}
+
+	private String makeParamsForGet(Map<String, String> params) {
+		return URLEncodedUtils.format(makeParamList(params), "UTF-8");
+	}
+
+	private UrlEncodedFormEntity makeParamsForPost(Map<String, String> params) throws Exception {
+		return new UrlEncodedFormEntity(makeParamList(params));
+	}
+
+	private String read(InputStream inputStream) throws Exception {
+		StringWriter writer = new StringWriter();
+		IOUtils.copy(inputStream, writer, "UTF-8");
+		return writer.toString();
 	}
 
 	private String readResponse(HttpEntity entity) throws Exception {
@@ -92,11 +98,5 @@ public class WebInteraction {
 		// log(bytesRead + "Bytes read");
 		//
 		// return new String(buffer);
-	}
-
-	private String read(InputStream inputStream) throws Exception {
-		StringWriter writer = new StringWriter();
-		IOUtils.copy(inputStream, writer, "UTF-8");
-		return writer.toString();
 	}
 }

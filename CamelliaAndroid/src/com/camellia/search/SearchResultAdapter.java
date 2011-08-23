@@ -12,14 +12,14 @@ import android.widget.TextView;
 import com.camellia.R;
 
 public class SearchResultAdapter extends ArrayAdapter<SearchResult> {
+	private final LayoutInflater layoutInflator;
 	private SearchResults results;
-	private LayoutInflater layoutInflator;
 
 	public SearchResultAdapter(Context context, int textViewResourceId, SearchResults searchResults) {
 		super(context, textViewResourceId, searchResults.getResults());
-		this.results = searchResults;
+		results = searchResults;
 
-		layoutInflator = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		layoutInflator = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 
 	@Override
