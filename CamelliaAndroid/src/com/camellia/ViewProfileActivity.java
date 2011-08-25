@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ViewFlipper;
 
 import com.camellia.header.HeaderRowDelegate;
 import com.camellia.header.HeaderRowSupported;
@@ -17,71 +18,81 @@ import com.camellia.profile.ViewProfileService;
 
 public class ViewProfileActivity extends Activity implements HeaderRowSupported {
 
-    private HeaderRowDelegate  headerRowDelegate;
-    private LayoutInflater     layoutInflater;
-    private ViewProfileService viewProfileService;
+	private HeaderRowDelegate headerRowDelegate;
+	private LayoutInflater layoutInflater;
+	private ViewProfileService viewProfileService;
 
-    public ViewProfileActivity() {
-        log("ViewProfileActivity...");
-    }
+	public ViewProfileActivity() {
+		log("ViewProfileActivity...");
+	}
 
-    public void goBack(View view) {
-        log("gotoBack");
-        finish();
-    }
+	public void goBack(View view) {
+		log("gotoBack");
+		finish();
+	}
 
-    @Override
-    public void goHome(View view) {
-        headerRowDelegate.handleGoHome();
-    }
+	@Override
+	public void goHome(View view) {
+		headerRowDelegate.handleGoHome();
+	}
 
-    public void gotoAddProfileProfile(View view) {
-        log("gotoAddProfileProfile");
-    }
+	public void gotoAddProfileProfile(View view) {
+		log("gotoAddProfileProfile");
+	}
 
-    public void gotoMoreProfile(View view) {
-        log("gotoMoreProfile");
-    }
+	public void gotoMoreProfile(View view) {
+		log("gotoMoreProfile");
+	}
 
-    public void gotoNextProfile(View view) {
-        log("gotoNextProfile");
-    }
+	public void gotoNextProfile(View view) {
+		log("gotoNextProfile");
+	}
 
-    public void gotoPreviousProfile(View view) {
-        log("gotoPreviousProfile");
-    }
+	public void gotoPreviousProfile(View view) {
+		log("gotoPreviousProfile");
+	}
 
-    @Override
-    public void onProfileMenu(View view) {
-        headerRowDelegate.handleProfileMenu();
-    }
+	@Override
+	public void onProfileMenu(View view) {
+		headerRowDelegate.handleProfileMenu();
+	}
 
-    @Override
-    public void onSearchPopup(View view) {
-        headerRowDelegate.handleSearchPopup(layoutInflater, (ViewGroup) findViewById(R.id.header_row));
-    }
+	@Override
+	public void onSearchPopup(View view) {
+		headerRowDelegate.handleSearchPopup(layoutInflater, (ViewGroup) findViewById(R.id.header_row));
+	}
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.view_profile);
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		setContentView(R.layout.view_profile_flip_layout);
 
-        viewProfileService = new ViewProfileService(new WebInteraction(new DefaultHttpClient()));
-        layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
-        headerRowDelegate = new HeaderRowDelegate(this);
+		viewProfileService = new ViewProfileService(new WebInteraction(new DefaultHttpClient()));
+		layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+		headerRowDelegate = new HeaderRowDelegate(this);
 
-        // String profileId = getIntent().getStringExtra(ViewProfileAction.PROFILE_ID);
-        // Profile profile = viewProfileService.load(profileId, profileId);
-        //
-        // LinearLayout homeSection = (LinearLayout) findViewById(R.id.view_profile_home_section);
-        // for (ContactPoint contactPoint : profile.getHomeSection().getContactPoints()) {
-        // LinearLayout contactPointView = (LinearLayout) layoutInflater.inflate(R.id.contact_point_icon_and_value, null);
-        // // ImageView icon = (ImageView) contactPointView.getChildAt(0);
-        // // TextView text = (TextView) contactPointView.getChildAt(1);
-        // //
-        // // text.setText(contactPoint.getText());
-        // //
-        // // homeSection.addView(contactPointView);
-        // }
-    }
+		// String profileId = getIntent().getStringExtra(ViewProfileAction.PROFILE_ID);
+		// Profile profile = viewProfileService.load(profileId, profileId);
+		//
+		// LinearLayout homeSection = (LinearLayout) findViewById(R.id.view_profile_home_section);
+		// for (ContactPoint contactPoint : profile.getHomeSection().getContactPoints()) {
+		// LinearLayout contactPointView = (LinearLayout) layoutInflater.inflate(R.id.contact_point_icon_and_value, null);
+		// // ImageView icon = (ImageView) contactPointView.getChildAt(0);
+		// // TextView text = (TextView) contactPointView.getChildAt(1);
+		// //
+		// // text.setText(contactPoint.getText());
+		// //
+		// // homeSection.addView(contactPointView);
+		// }
+	}
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+
+		LayoutInflater layoutInflater = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
+		ViewFlipper parentViewFlipper = (ViewFlipper) findViewById(R.id.view_profile_flipper);
+		View viewProfile = layoutInflater.inflate(R.layout.view_profile, null);
+		parentViewFlipper.addView(viewProfile);
+	}
 }

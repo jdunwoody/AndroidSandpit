@@ -1,11 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent" android:layout_height="fill_parent"
-	android:id="@layout/search_popup" android:background="@color/black">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical" android:layout_width="fill_parent"
+	android:layout_height="wrap_content" android:id="@layout/search_popup" android:background="@color/black">
 
-	<EditText style="@style/inputField" android:hint="Who" android:layout_width="match_parent" android:layout_height="30dip" android:id="@+id/name_input" android:inputType="textPersonName">
+	<EditText style="@style/inputField" android:hint="Who" android:layout_width="match_parent" android:layout_height="30dip" android:id="@+id/name_input_popup"
+		android:inputType="text">
 		<requestFocus></requestFocus>
 	</EditText>
 
-	<EditText style="@style/inputField" android:layout_width="match_parent" android:layout_height="30dip" android:id="@+id/address_input" android:inputType="textPostalAddress"
+	<EditText style="@style/inputField" android:layout_width="match_parent" android:layout_height="30dip" android:id="@+id/address_input_popup" android:inputType="textPostalAddress"
 		android:hint="Where"></EditText>
+
+	<RelativeLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:paddingRight="15dip" android:paddingLeft="10dip"
+		android:paddingBottom="10dip" android:paddingTop="10dip">
+
+		<ImageButton android:id="@+id/search" android:layout_width="wrap_content" android:layout_height="wrap_content" android:src="@drawable/search_button"
+			android:layout_marginBottom="10sp" android:paddingLeft="20dip" android:background="@drawable/white_rounded_edges" android:paddingRight="20dip" android:paddingTop="10dip"
+			android:layout_alignParentRight="true" android:paddingBottom="10dip" android:layout_marginRight="10dip" android:onClick="onSearchPopup" />
+	</RelativeLayout>
+
 </LinearLayout>
